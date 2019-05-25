@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ml4t.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grading/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grading/grade_parser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grading/gradebook.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grading/grading.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grading/helper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grading/merge_grades_tsq.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/analysis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/figure_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/figure_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/figure_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/figure_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/figure_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/martingale/martingale.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/martingale/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/martingale/analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,51 +15,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/martingale/martingale.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="99" selection-start-line="99" selection-end-line="122" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/martingale/figure_1.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/martingale/figure_2.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/martingale/figure_3.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/martingale/figure_4.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/martingale/figure_5.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/martingale/analysis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="294">
+              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/martingale/analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+            <state relative-caret-position="430">
+              <caret line="166" selection-start-line="166" selection-end-line="166" />
+              <folding>
+                <element signature="e#1727#1758#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,9 +50,10 @@
       <list>
         <option value="$PROJECT_DIR$/requirements" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/martingale/__init__.py" />
         <option value="$PROJECT_DIR$/martingale/martingale.py" />
         <option value="$PROJECT_DIR$/martingale/analysis.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -130,6 +77,11 @@
             <path>
               <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
               <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
+              <item name="martingale" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -197,22 +149,23 @@
       <workItem from="1558568666987" duration="2230000" />
       <workItem from="1558654652599" duration="10859000" />
       <workItem from="1558790598914" duration="4479000" />
-      <workItem from="1558805144912" duration="5229000" />
+      <workItem from="1558805144912" duration="13222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24251000" />
+    <option name="totallyTimeSpent" value="32244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13392363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25701943" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25701943" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44985104" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -222,11 +175,11 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32969216" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.33405173" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3336933" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.54268944" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.30990592" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
     <layout-to-restore>
@@ -262,13 +215,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements" />
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my_image.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -287,24 +233,40 @@
     <entry file="file://$PROJECT_DIR$/martingale/figure_5.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/martingale/experiment_1_binomial_distribution.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/martingale/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/martingale/martingale.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="99" selection-start-line="99" selection-end-line="122" />
+        <state relative-caret-position="294">
+          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/martingale/analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+        <state relative-caret-position="430">
+          <caret line="166" selection-start-line="166" selection-end-line="166" />
+          <folding>
+            <element signature="e#1727#1758#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
