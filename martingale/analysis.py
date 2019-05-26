@@ -5,6 +5,8 @@ Report
 Please address each of these points/questions in your report, to be submitted as report.pdf
 
     In Experiment 1, estimate the probability of winning $80 within 1000 sequential bets. Explain your reasoning.
+      * 100% of the trials reached 80 after 1000 sequential bets.
+      * I believe the probability approaches 100%, but it is not exactly 100%.
       * If the bet starts at 1 and doubles each loss, then the bet is represented as 2**l where l is the number of
         consecutive losses
       * Total losses are the sum of all prior bets, or sum(2**l_ for l_ in range(l))
@@ -58,6 +60,22 @@ Please address each of these points/questions in your report, to be submitted as
 """
 In Experiment 1, estimate the probability of winning $80 within 1000 sequential bets. Explain your reasoning.
 """
+from martingale.martingale import betting_scheme
+import numpy as np
+
+np.random.seed(7646)
+n_simulations = 10
+n_runs_per_sim = 1000
+agg_winnings = np.zeros(shape=(n_simulations, n_runs_per_sim))
+
+for i in range(n_simulations):
+    agg_winnings[i, :] = betting_scheme(n_runs_per_sim)[:]
+
+np.mean(agg_winnings[:, -1] == 80)
+
+
+
+
 
 # 999 losses, 1 win
 # 510 losses, 490 wins
@@ -229,53 +247,52 @@ plt.close()
     * Based on the experiments, 74%
     
 """
-
-# What is the probability that the simulation will stay above $256 before getting 80 wins?
-# How many sequential losses, given total prior wins, lead to hitting -256?
-# What is the highest number of consecutive losses allowed before hitting bank roll at any trial count? Assuming
-# evenly hitting losses and wins up to that point.
-from math import floor
-from martingale.martingale import betting_scheme
-p = 0.5
+np.random.seed(7646)
+n_simulations = 1000
+n_runs_per_sim = 1000
 bank_roll = 256
 
-n_trials = 10
-probable_total_winnings = n_trials * p
-# Allowable consecutive losses before likely hitting bankroll
-int(floor(np.log2(bank_roll + probable_total_winnings)))
-# Probability of hitting the allowed losses at each step
-# Step 1
-# Prob win .5
-# Prob loss .5
-# Step 2
-# Prob win 1
-# Prob loss 1
-# Step 3
-# 1.5 1.5
-# Step 4
-# 2 2
-# Probable total winnings are always 0
-# Allowed losses for bankroll 8, then max is reached on 9 so the bet can't be made.... so call it 9
-2**8 - 1
-int(floor(np.log2(bank_roll)))
+agg_winnings = np.zeros(shape=(n_simulations, n_runs_per_sim))
 
-# Must use cumulative bets
-sum(list(2**i for i in range(8)))
-2**8
+for i in range(n_simulations):
+    agg_winnings[i, :] = betting_scheme(n_runs_per_sim, bank_roll=bank_roll)[:]
+
+mean = np.mean(agg_winnings.T, axis=1)
+std = np.std(agg_winnings.T, axis=1)
+
+# How many win 80 by the end?
+np.mean(agg_winnings[:, -1] == 80)
+# 74% of the experiments reached $80
 
 
+"""
 
-# Probability of 9 consecutive losses is...
-.5**8
-# How many chances are there to get 9 con losses
-# using 99% probability as ceiling (191 trials)
-.5**8 * (191 - 9)
-# 35.5% probability of losing bankroll
+    In Experiment 2,
+    what is the estimated expected value of our winnings after 1000 sequential bets? Explain your reasoning. (not
+    based on plots)
+"""
+
+# Average of the last column for all experiments: average after 1000 experiments
+np.mean(agg_winnings[:, -1])
 
 
-# .19% probability
+"""
 
-# This seems low... how many times does it happen?
+    In Experiment 2, does the standard deviation reach a maximum value then stabilize or converge as
+    the number of sequential bets increases? Explain why it does (or does not). Include figures 1 through 5.
+
+
+"""
+
+# The std converges as the number of sequential bets increase.
+# The more bets, the more of a chance that the bank roll is exhausted. Once that happens that trial no longer
+# has variance. At the same time, the chance of reaching 80 total wins increases. Once that happens that trial
+# also no longer has variance. Eventually the algorithm converges where each trial either stopped at 80
+# or it stopped after the bankroll was exhausted. This explains why the variance increases, but eventually converges
+# once all trials have reached an extreme value.
+#
+
+
 np.random.seed(7646)
 n_simulations = 1000
 n_runs_per_sim = 1000
@@ -296,48 +313,6 @@ plt.ylim(bottom=-256, top=100)
 plt.title("Figure 4")
 plt.xlabel("Number of Spins")
 plt.ylabel("Mean Winnings (+- std)")
+plt.axvline(x=np.min(np.argwhere(np.array(result) > .99)))
 plt.show()
 
-# Anytime the winnings total drops, it was a loss
-
-agg_winnings_df = pd.DataFrame(agg_winnings.T)
-
-trial_loss_history = agg_winnings_df == 80
-trial_loss_history = trial_loss_history.rolling(2).apply(lambda x: x[0] < x[1])
-
-# Rolling sum of hitting bankroll (this can help to estimate probability)
-trial_loss_history.iloc[0, :] = 0.0
-trial_loss_history = trial_loss_history.cumsum()
-trial_loss_history.sum(axis=1).plot()
-
-plt.show()
-
-
-trial_loss_history
-
-# Take the final row, how many reached 80 in winnings?  / total == prob
-trial_loss_history.iloc[-1, :].sum() / trial_loss_history.shape[1]
-# 74% of them
-# Experiment shows a 26% probability of loss
-# If this experiment was ran over an over I would expect the prob to be closer to 36%.
-
-trial_loss_history.rolling(5).sum().plot()
-plt.show()
-# At trial 1, 50/50 chance of getting 1, 0% chance of losing
-
-
-
-
-"""
-
-    In Experiment 2,
-    what is the estimated expected value of our winnings after 1000 sequential bets? Explain your reasoning. (not
-    based on plots)
-"""
-"""
-
-    In Experiment 2, does the standard deviation reach a maximum value then stabilize or converge as
-    the number of sequential bets increases? Explain why it does (or does not). Include figures 1 through 5.
-
-
-"""

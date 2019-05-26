@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/martingale/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/martingale/analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +15,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/martingale/martingale.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="281" selection-start-line="281" selection-end-line="300" selection-end-column="40" />
+            <state relative-caret-position="247">
+              <caret line="190" selection-start-line="190" selection-end-line="197" />
             </state>
           </provider>
         </entry>
@@ -25,10 +24,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/martingale/analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1261">
-              <caret line="302" column="46" lean-forward="true" selection-start-line="302" selection-start-column="46" selection-end-line="302" selection-end-column="46" />
+            <state relative-caret-position="495">
+              <caret line="240" column="64" selection-start-line="240" selection-start-column="64" selection-end-line="240" selection-end-column="64" />
               <folding>
-                <element signature="e#3637#3668#0" expanded="true" />
+                <element signature="e#3400#3448#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,12 +182,12 @@
       <workItem from="1558654652599" duration="10859000" />
       <workItem from="1558790598914" duration="4479000" />
       <workItem from="1558805144912" duration="13228000" />
-      <workItem from="1558886343422" duration="11475000" />
+      <workItem from="1558886343422" duration="12680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43725000" />
+    <option name="totallyTimeSpent" value="44930000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -209,12 +208,12 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32969216" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.30453563" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.17062636" />
       <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.19645822" />
+      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.32540122" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
     <layout-to-restore>
@@ -288,17 +287,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/martingale/martingale.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="281" selection-start-line="281" selection-end-line="300" selection-end-column="40" />
+        <state relative-caret-position="247">
+          <caret line="190" selection-start-line="190" selection-end-line="197" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/martingale/analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1261">
-          <caret line="302" column="46" lean-forward="true" selection-start-line="302" selection-start-column="46" selection-end-line="302" selection-end-column="46" />
+        <state relative-caret-position="495">
+          <caret line="240" column="64" selection-start-line="240" selection-start-column="64" selection-end-line="240" selection-end-column="64" />
           <folding>
-            <element signature="e#3637#3668#0" expanded="true" />
+            <element signature="e#3400#3448#0" expanded="true" />
           </folding>
         </state>
       </provider>
