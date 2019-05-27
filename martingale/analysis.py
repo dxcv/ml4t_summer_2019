@@ -266,22 +266,20 @@ np.mean(agg_winnings[:, -1] == 80)
 
 
 """
-
-    In Experiment 2,
-    what is the estimated expected value of our winnings after 1000 sequential bets? Explain your reasoning. (not
-    based on plots)
+In Experiment 2,
+what is the estimated expected value of our winnings after 1000 sequential bets? Explain your reasoning. (not
+based on plots)
 """
 
 # Average of the last column for all experiments: average after 1000 experiments
 np.mean(agg_winnings[:, -1])
 
+np.mean(agg_winnings[np.argwhere(agg_winnings[:, -1] != 80), -1])
+
 
 """
-
-    In Experiment 2, does the standard deviation reach a maximum value then stabilize or converge as
-    the number of sequential bets increases? Explain why it does (or does not). Include figures 1 through 5.
-
-
+In Experiment 2, does the standard deviation reach a maximum value then stabilize or converge as
+the number of sequential bets increases? Explain why it does (or does not). Include figures 1 through 5.
 """
 
 # The std converges as the number of sequential bets increase.
@@ -290,8 +288,6 @@ np.mean(agg_winnings[:, -1])
 # also no longer has variance. Eventually the algorithm converges where each trial either stopped at 80
 # or it stopped after the bankroll was exhausted. This explains why the variance increases, but eventually converges
 # once all trials have reached an extreme value.
-#
-
 
 np.random.seed(7646)
 n_simulations = 1000
