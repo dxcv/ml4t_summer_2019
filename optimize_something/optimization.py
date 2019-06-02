@@ -25,10 +25,11 @@ GT ID: 90347082
 """
 
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 import datetime as dt
-from util import get_data, plot_data
+from util import get_data
+from scipy import optimize as opt
+from matplotlib import pyplot as plt
 
 
 # # TODO Remove this after dev
@@ -39,9 +40,9 @@ from util import get_data, plot_data
 # os.getcwd()
 
 
-def assess_portfolio(sd, ed,
-                     syms,
-                     allocs, rfr=0.0, sf=252.0):
+def port_stats(sd, ed,
+               syms,
+               allocs, rfr=0.0, sf=252.0):
     # Read in adjusted closing prices for given symbols, date range
     dates = pd.date_range(sd, ed)
     prices_all = get_data(syms, dates)  # automatically adds SPY
@@ -81,26 +82,21 @@ def assess_portfolio(sd, ed,
 
 def neg_sr(allocs, sd, ed,
            syms, rfr=0.0, sf=252.0):
-    cr, adr, sddr, sr, _ = assess_portfolio(sd=sd, ed=ed,
-                                            syms=syms,
-                                            allocs=allocs, rfr=rfr, sf=sf)
+    cr, adr, sddr, sr, _ = port_stats(sd=sd, ed=ed,
+                                      syms=syms,
+                                      allocs=allocs, rfr=rfr, sf=sf)
     return -sr
-
-
-from scipy import optimize as opt
-from matplotlib import pyplot as plt
 
 
 # This is the function that will be tested by the autograder
 # The student must update this code to properly implement the functionality 			  		 			 	 	 		 		 	  		   	  			  	
 def optimize_portfolio(sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1, 1),
                        syms=['GOOG', 'AAPL', 'GLD', 'XOM'], gen_plot=False):
-
-    # find the allocations for the optimal portfolio 			  		 			 	 	 		 		 	  		   	  			  	
+    # find the allocations for the optimal portfolio
     # note that the values here ARE NOT meant to be correct for a test case
 
     # Initial guess at allocations
-    allocs = np.array([1.0/len(syms) for _ in range(len(syms))])  # TODO add code here to find the allocations
+    allocs = np.array([1.0 / len(syms) for _ in range(len(syms))])  # TODO add code here to find the allocations
 
     # Define range and constraints
     range_limit = [(0, 1) for _ in range(len(allocs))]
@@ -111,15 +107,10 @@ def optimize_portfolio(sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1, 1),
                            constraints={"fun": constraint, "type": "eq"})
     allocs = opt_out.x
 
-    # TODO Write steps to find allocations while optimizing for highest sharpe ratio for daily frequency
-
-    # Set initial guess
-    # Call optimizer (also need to decide which to use) from scipy.optimize, use opt.minimize()
-
     # Compute stats
-    cr, adr, sddr, sr, port_val = assess_portfolio(sd, ed, syms, allocs)
+    cr, adr, sddr, sr, port_val = port_stats(sd, ed, syms, allocs)
 
-    _, _, _, _, spy_val = assess_portfolio(sd, ed, ['SPY'], [1.0])
+    _, _, _, _, spy_val = port_stats(sd, ed, ['SPY'], [1.0])
 
     # Compare daily portfolio value with SPY using a normalized plot 			  		 			 	 	 		 		 	  		   	  			  	
     if gen_plot:
@@ -142,7 +133,11 @@ def test_code():
 
     # Define input parameters 			  		 			 	 	 		 		 	  		   	  			  	
     # Note that ALL of these values will be set to different values by 			  		 			 	 	 		 		 	  		   	  			  	
-    # the autograder! 			  		 			 	 	 		 		 	  		   	  			  	
+    # the autograder!
+    end_date = dt.datetime(2010, 12, 31, 0, 0)
+    start_date = dt.datetime(2010, 1, 1, 0, 0)
+    symbols = ['GOOG', 'AAPL', 'GLD', 'XOM']
+    outputs = allocs = [0.0, 0.4, 0.6, 0.0]
 
     start_date = dt.datetime(2008, 6, 1)
     end_date = dt.datetime(2009, 6, 1)
@@ -151,7 +146,7 @@ def test_code():
     # Assess the portfolio 			  		 			 	 	 		 		 	  		   	  			  	
     allocations, cr, adr, sddr, sr = optimize_portfolio(sd=start_date, ed=end_date,
                                                         syms=symbols,
-                                                        gen_plot=True)
+                                                        gen_plot=False)
 
     # Print statistics 			  		 			 	 	 		 		 	  		   	  			  	
     print "Start Date:", start_date
