@@ -100,7 +100,7 @@ def optimize_portfolio(sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1, 1),
 
     # Define range and constraints
     range_limit = [(0, 1) for _ in range(len(allocs))]
-    constraint = lambda x: np.sum(x) - 1
+    constraint = lambda x: sum(x) - 1
 
     # Optimize for
     opt_out = opt.minimize(neg_sr, allocs, args=(sd, ed, syms), bounds=range_limit,
