@@ -47,6 +47,10 @@ def assess_portfolio(sd, ed,
     prices_all = get_data(syms, dates)  # automatically adds SPY
     prices = prices_all[syms]  # only portfolio symbols
 
+    # Handle missing values
+    prices = prices.fillna(method="ffill")
+    prices = prices.fillna(method="bfill")
+
     # Get daily portfolio value
 
     # Normalize (divide stock prices by first row), name norm_price

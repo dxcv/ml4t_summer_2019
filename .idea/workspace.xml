@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/martingale/martingale.py" beforeDir="false" afterPath="$PROJECT_DIR$/martingale/martingale.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimize_something/.cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/optimize_something/.cache/v/cache/lastfailed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimize_something/comments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/optimize_something/comments.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimize_something/optimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimize_something/optimization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimize_something/points.txt" beforeDir="false" afterPath="$PROJECT_DIR$/optimize_something/points.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/optimize_something/comments.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+            <state relative-caret-position="90">
+              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -44,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/optimize_something/optimization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="152" column="35" lean-forward="true" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
+            <state relative-caret-position="300">
+              <caret line="56" column="42" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
               <folding>
                 <element signature="e#1764#1783#0" expanded="true" />
               </folding>
@@ -254,12 +255,12 @@
       <workItem from="1558886343422" duration="12744000" />
       <workItem from="1558919202152" duration="5012000" />
       <workItem from="1559096319379" duration="664000" />
-      <workItem from="1559399724751" duration="20152000" />
+      <workItem from="1559399724751" duration="21131000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70822000" />
+    <option name="totallyTimeSpent" value="71801000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="925" extended-state="6" />
@@ -280,7 +281,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32969216" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.28894472" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.31909546" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -320,7 +321,7 @@
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$assess_portfolio.coverage" NAME="assess_portfolio Coverage Results" MODIFIED="1559485327198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assess_portfolio" />
     <SUITE FILE_PATH="coverage/ml4t$martingale.coverage" NAME="martingale Coverage Results" MODIFIED="1558570311870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/martingale" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$martingale.coverage" NAME="martingale Coverage Results" MODIFIED="1558926623540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ML4T_2019Spring$optimize_something.coverage" NAME="optimize_something Coverage Results" MODIFIED="1559491396120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/optimize_something" />
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$optimize_something.coverage" NAME="optimize_something Coverage Results" MODIFIED="1559492609086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/optimize_something" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements" />
@@ -386,8 +387,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/optimize_something/comments.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        <state relative-caret-position="90">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -417,8 +418,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/optimize_something/optimization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="152" column="35" lean-forward="true" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
+        <state relative-caret-position="300">
+          <caret line="56" column="42" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
           <folding>
             <element signature="e#1764#1783#0" expanded="true" />
           </folding>
