@@ -32,14 +32,6 @@ from scipy import optimize as opt
 from matplotlib import pyplot as plt
 
 
-# # TODO Remove this after dev
-# import os
-# import sys
-#
-# os.chdir(os.path.join(os.getcwd(), "optimize_something"))
-# os.getcwd()
-
-
 def port_stats(sd, ed,
                syms,
                allocs, rfr=0.0, sf=252.0):
@@ -134,10 +126,6 @@ def test_code():
     # Define input parameters 			  		 			 	 	 		 		 	  		   	  			  	
     # Note that ALL of these values will be set to different values by 			  		 			 	 	 		 		 	  		   	  			  	
     # the autograder!
-    end_date = dt.datetime(2010, 12, 31, 0, 0)
-    start_date = dt.datetime(2010, 1, 1, 0, 0)
-    symbols = ['GOOG', 'AAPL', 'GLD', 'XOM']
-    outputs = allocs = [0.0, 0.4, 0.6, 0.0]
 
     start_date = dt.datetime(2008, 6, 1)
     end_date = dt.datetime(2009, 6, 1)
@@ -146,7 +134,7 @@ def test_code():
     # Assess the portfolio 			  		 			 	 	 		 		 	  		   	  			  	
     allocations, cr, adr, sddr, sr = optimize_portfolio(sd=start_date, ed=end_date,
                                                         syms=symbols,
-                                                        gen_plot=False)
+                                                        gen_plot=True)
 
     # Print statistics 			  		 			 	 	 		 		 	  		   	  			  	
     print "Start Date:", start_date

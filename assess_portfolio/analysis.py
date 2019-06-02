@@ -8,14 +8,7 @@ All Rights Reserved
 import pandas as pd
 import numpy as np
 import datetime as dt
-from util import get_data, plot_data
-
-# # TODO Remove this after dev
-# import os
-# import sys
-# os.chdir(os.path.join(os.getcwd(), "optimize_something"))
-# os.getcwd()
-
+from util import get_data
 
 
 # This is the function that will be tested by the autograder
