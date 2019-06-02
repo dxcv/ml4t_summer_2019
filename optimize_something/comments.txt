@@ -1,0 +1,61 @@
+<pre>--- Summary ---
+Tests passed: 2 out of 8
+
+--- Details ---
+Test #0: failed 
+Test case description: Wiki example 1
+Traceback:
+  File "optimization.py", line 118, in optimize_portfolio
+    constraints={"fun": constraint, "type": "eq"})
+  File "optimization.py", line 88, in neg_sr
+    gen_plot=gen_plot)
+  File "optimization.py", line 49, in assess_portfolio
+    prices_all = get_data(syms, dates)  # automatically adds SPY
+TimeoutException: Exceeded time limit!
+
+Test #1: passed 
+Test #2: failed 
+Test case description: Wiki example 3
+Traceback:
+  File "optimization.py", line 118, in optimize_portfolio
+    constraints={"fun": constraint, "type": "eq"})
+  File "optimization.py", line 88, in neg_sr
+    gen_plot=gen_plot)
+  File "optimization.py", line 49, in assess_portfolio
+    prices_all = get_data(syms, dates)  # automatically adds SPY
+TimeoutException: Exceeded time limit!
+
+Test #3: failed 
+Test case description: Wiki example 4
+Traceback:
+  File "optimization.py", line 118, in optimize_portfolio
+    constraints={"fun": constraint, "type": "eq"})
+  File "optimization.py", line 88, in neg_sr
+    gen_plot=gen_plot)
+  File "optimization.py", line 49, in assess_portfolio
+    prices_all = get_data(syms, dates)  # automatically adds SPY
+TimeoutException: Exceeded time limit!
+
+Test #4: failed 
+Test case description: MSFT vs HPQ
+Traceback:
+  File "optimization.py", line 118, in optimize_portfolio
+    constraints={"fun": constraint, "type": "eq"})
+ValueError: Objective function must return a scalar
+
+Test #5: passed 
+Test #6: failed 
+Test case description: Wiki example 1 in 2011
+Traceback:
+  File "optimization.py", line 118, in optimize_portfolio
+    constraints={"fun": constraint, "type": "eq"})
+ValueError: Objective function must return a scalar
+
+Test #7: failed 
+Test case description: Year of the HNZ
+Traceback:
+  File "optimization.py", line 118, in optimize_portfolio
+    constraints={"fun": constraint, "type": "eq"})
+ValueError: Objective function must return a scalar
+
+</pre>
