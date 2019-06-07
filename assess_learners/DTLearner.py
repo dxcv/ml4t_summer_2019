@@ -64,8 +64,8 @@ import numpy as np
 df = pd.read_csv("assess_learners/Data/Istanbul.csv")
 
 
-def build_tree(x, y, depth):
-    if x.shape[0] == 1:
+def build_tree(x, y, depth, leaf_size=1):
+    if x.shape[0] <= leaf_size:
         return np.array([[depth, np.nan, np.mean(y), np.nan, np.nan]])
     if np.std(y) == 0:
         return np.array([[depth, np.nan, np.mean(y), np.nan, np.nan]])
@@ -127,29 +127,79 @@ print("Prediction:", final_answer)
 print("Actual:", example_y)
 
 
+class DTLearner:
+
+    NODE_INDEX = 0
+    FEAT_INDEX = 1
+    SPLIT_VALUE_INDEX = 2
+    LEFT_INDEX = 3
+    RIGHT_INDEX = 4
+
+    def __init__(self):
+        self.tree_data = None
+
+    def addEvidence(self, Xtrain, Ytrain, leaf_size=1):
+        self.tree_data = self.build_tree(Xtrain, Ytrain, leaf_size=leaf_size)
+        return self
+
+    @staticmethod
+    def build_tree(x, y, depth=0, leaf_size=1):
+        if x.shape[0] <= leaf_size:
+            return np.array([[depth, np.nan, np.mean(y), np.nan, np.nan]])
+        if np.std(y) == 0:
+            return np.array([[depth, np.nan, np.mean(y), np.nan, np.nan]])
+
+        feature = np.argmax([np.float(np.correlate(x[:, j], y)) for j in range(x.shape[1] - 1)])
+
+        split_value = np.median(x[:, feature])
+        left_tree = build_tree(x[x[:, feature] <= split_value, :], y[x[:, feature] <= split_value], depth + 1)
+        right_tree = build_tree(x[x[:, feature] > split_value, :], y[x[:, feature] > split_value],
+                                depth + left_tree.shape[0] + 1)
+
+        root = np.array([[depth, feature, split_value, depth + 1, depth + left_tree.shape[0] + 1]])
+
+        return np.vstack([root, left_tree, right_tree])
+
+    def query(self, Xtrain):
+        if self.tree_data is None:
+            raise AssertionError("Attempting to query an untrained model")
+
+        predictions = []
+
+        for i in range(len(Xtrain)):
+            node = 0
+
+            while True:
+                feature = np.int(self.tree_data[node, FEAT_INDEX]) if not np.isnan(self.tree_data[node, FEAT_INDEX]) else np.nan
+                split_value = self.tree_data[node, SPLIT_VALUE_INDEX]
+                if np.isnan(feature):
+                    predictions.append(split_value)
+                    break
+                if Xtrain[i, feature] <= split_value:
+                    node = np.int(self.tree_data[node, LEFT_INDEX])
+                else:
+                    node = np.int(self.tree_data[node, RIGHT_INDEX])
+        return np.array(predictions)
 
 
+train_len = int(len(df) * .8)
+
+train, test = df.iloc[:train_len, 1:], df.iloc[train_len:, 1:]
+
+model = DTLearner()
+
+model.addEvidence(train.iloc[:, :-1].values, train.iloc[:, -1].values, leaf_size=1)
+
+y_test = test.iloc[:, -1].values
+
+predictions = model.query(test.iloc[:, :-1].values)
+
+# TODO RTLearner: RT video 2, 46 minutes in
+
+np.sqrt(np.mean((y_test - predictions)**2))
 
 
-
-my_tree.shape
-
-"""
-How to determine “best” feature?
-
-Goal: Divide and conquer
-
-Group data into most similar groups.
-
-
-Approaches:
-•Information gain: Entropy
-•Information gain: Correlation
-•Information gain: GiniIndex
-https://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm
-
-"""
-
+# TODO Start here!
 
 
 
