@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/assess_portfolio/analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/assess_portfolio/analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimize_something/optimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimize_something/optimization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,20 +13,12 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/optimize_something/optimization.py">
+        <entry file="file://$PROJECT_DIR$/assess_learners/DTLearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-              <folding>
-                <element signature="e#1764#1783#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="390">
+              <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/optimize_something/optimization_plot.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -55,14 +46,19 @@
         <option value="$PROJECT_DIR$/util.py" />
         <option value="$PROJECT_DIR$/assess_portfolio/analysis.py" />
         <option value="$PROJECT_DIR$/optimize_something/optimization.py" />
+        <option value="$PROJECT_DIR$/assess_learners/LinRegLearner.py" />
+        <option value="$PROJECT_DIR$/assess_learners/testlearner.py" />
+        <option value="$PROJECT_DIR$/assess_learners/grade_learners.py" />
+        <option value="$PROJECT_DIR$/assess_learners/dt_learner.py" />
+        <option value="$PROJECT_DIR$/assess_learners/DTLearner.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="509" />
-    <option name="y" value="25" />
-    <option name="width" value="443" />
-    <option name="height" value="915" />
+    <option name="x" value="135" />
+    <option name="y" value="27" />
+    <option name="width" value="885" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -79,11 +75,6 @@
             <path>
               <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
               <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
-              <item name="optimize_something" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -231,18 +222,23 @@
       <workItem from="1558886343422" duration="12744000" />
       <workItem from="1558919202152" duration="5012000" />
       <workItem from="1559096319379" duration="664000" />
-      <workItem from="1559399724751" duration="24007000" />
+      <workItem from="1559399724751" duration="24762000" />
+      <workItem from="1559604909446" duration="4514000" />
+      <workItem from="1559695061503" duration="1668000" />
+      <workItem from="1559702221478" duration="6206000" />
+      <workItem from="1559778836596" duration="9527000" />
+      <workItem from="1559861796788" duration="12594000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74677000" />
+    <option name="totallyTimeSpent" value="109941000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="925" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.049806308" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.40882003" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -257,21 +253,21 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32969216" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.25251257" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.33166832" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.4333149" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.43281165" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.34587714" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.40882003" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2775378" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3379397" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44985104" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -281,7 +277,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32969216" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.5766944" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.44402036" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -392,16 +388,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/optimize_something/optimization_plot.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/optimize_something/optimization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        <state relative-caret-position="255">
+          <caret line="50" column="62" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
           <folding>
             <element signature="e#1764#1783#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/optimize_something/optimization_plot.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assess_learners/LinRegLearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="64" selection-start-line="43" selection-start-column="64" selection-end-line="43" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assess_learners/testlearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assess_learners/grade_learners.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="87" column="55" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assess_learners/Data/Istanbul.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assess_learners/DTLearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
         </state>
       </provider>
     </entry>
