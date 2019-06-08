@@ -263,7 +263,7 @@ def test_learners(description, group, datafile, seed, outputs, grader):
         if not 'DTLearner' in globals():
             from DTLearner import DTLearner
         if (group is 'BagLearner') or (group is 'InsaneLearner') or (group is 'RandomName') and (
-        not 'BagLearner' in globals()):
+                not 'BagLearner' in globals()):
             from BagLearner import BagLearner
         # put seeds back for the moment
         np.random.seed = tmp_numpy_seed
@@ -473,8 +473,7 @@ def test_learners(description, group, datafile, seed, outputs, grader):
         if incorrect:
             inputs_str = "    data file: {}\n" \
                          "    permutation: {}".format(datafile, permutation)
-            raise IncorrectOutput, "Test failed on one or more output criteria.\n  Inputs:\n{}\n  Failures:\n{}".format(
-                inputs_str, "\n".join(msgs))
+            raise IncorrectOutput, "Test failed on one or more output criteria.\n  Inputs:\n{}\n  Failures:\n{}".format(inputs_str, "\n".join(msgs))
     except Exception as e:
         # Test result: failed 			  		 			 	 	 		 		 	  		   	  			  	
         msg = "Description: {} (group: {})\n".format(description, group)
