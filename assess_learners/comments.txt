@@ -1,30 +1,15 @@
 <pre>--- Summary ---
-Tests passed: 3 out of 18
+Tests passed: 8 out of 18
 
 --- Details ---
 Test #0: passed 
 Test #1: passed 
-Test #2: failed 
-Description: Test Case 03: Deterministic Tree (group: DTLearner)
-RuntimeError: maximum recursion depth exceeded while calling a Python object
-
+Test #2: passed 
 Test #3: passed 
-Test #4: failed 
-Description: Test Case 01: Random Tree (group: RTLearner)
-ValueError: all the input array dimensions except for the concatenation axis must match exactly
-
-Test #5: failed 
-Description: Test Case 02: Random Tree (group: RTLearner)
-ValueError: all the input array dimensions except for the concatenation axis must match exactly
-
-Test #6: failed 
-Description: Test Case 03: Random Tree (group: RTLearner)
-ValueError: all the input array dimensions except for the concatenation axis must match exactly
-
-Test #7: failed 
-Description: Test Case 04: Random Tree (group: RTLearner)
-ValueError: all the input array dimensions except for the concatenation axis must match exactly
-
+Test #4: passed 
+Test #5: passed 
+Test #6: passed 
+Test #7: passed 
 Test #8: failed 
 Description: Test Case 01: Bagging (group: BagLearner)
 ValueError: all the input array dimensions except for the concatenation axis must match exactly
