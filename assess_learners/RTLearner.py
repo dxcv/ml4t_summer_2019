@@ -37,11 +37,13 @@ class RTLearner:
             np.random.seed(np.int(time()))
         feature_random_i = np.argsort(np.random.random_sample(x.shape[1]))
 
-        # Loop through feature_sort_i until find one with std > 0
-        # If none are available, return leaf
         feature = np.nan
         for i in feature_random_i:
             if np.std(x[:, i]) == 0:
+                # If zero std in feature split, continue
+                continue
+            elif np.all(x[:, i] < np.median(x[:, i])) or not np.any(x[:, i] < np.median(x[:, i])):
+                # If none or all are less than median, continue
                 continue
             else:
                 feature = i
@@ -49,17 +51,7 @@ class RTLearner:
         if np.isnan(feature):
             return np.array([[depth, np.nan, np.mean(y), np.nan, np.nan]])
 
-        # Find the split value based on average of two randomly selected variables
-        if random_state is not None:
-            np.random.seed(random_state)
-        else:
-            np.random.seed(np.int(time()))
-        while True:
-            j, k = np.random.randint(0, x.shape[0]), np.random.randint(0, x.shape[0])
-            split_value = np.mean([x[j, feature], x[k, feature]])
-            # Find a split value that doesn't group all on one side
-            if not np.all(x[:, feature] < split_value) and np.any(x[:, feature] < split_value):
-                break
+        split_value = np.median(x[:, feature])
 
         # Split based on split value and get left and right index
         left_index = x[:, feature] < split_value

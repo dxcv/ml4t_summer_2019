@@ -34,7 +34,7 @@ data = df.iloc[:, 1:].values
 # Implement cross-validation
 
 
-def get_cv_splits(data, k=10, random_state=None):
+def get_cv_splits(data, k=5, random_state=None):
     all_indices = np.arange(0, data.shape[0])
     if random_state is not None:
         np.random.seed(random_state)
@@ -54,18 +54,83 @@ def get_cv_splits(data, k=10, random_state=None):
 
 cv_scores = []
 
-for train, test in get_cv_splits(data, random_state=None):
+for train, test in get_cv_splits(data, k=5, random_state=0):
+    # train.shape
+    # test.shape
+    # break
+    # print "Iteration Start...."
+
     x_train, y_train = data[train, :-1], data[train, -1]
     x_test, y_test = data[test, :-1], data[test, -1]
 
-    # model = dt.DTLearner(leaf_size=10)
-    model = rt.RTLearner(leaf_size=10, random_state=5)
+    # Create model list
+    model_list = []
 
-    model.addEvidence(x_train, y_train)
+    ESTIMATORS = 50
+    LEAF_SIZE = 10
+    BAG_SIZE = .60
+    N = x_train.shape[0]
+    TRAIN_TYPE = "boost"  # bag, boost, normal
 
-    predictions = model.query(x_test)
+    # Train models
+    for _ in range(ESTIMATORS):
 
-    # TODO RTLearner: RT video 2, 46 minutes in
+        # Instantiate model
+        model = rt.RTLearner(leaf_size=LEAF_SIZE, random_state=_)
+        # model = dt.DTLearner(leaf_size=LEAF_SIZE)
+
+        if TRAIN_TYPE != "normal":
+
+            all_weights = None
+
+            # TODO Should the error be based on the last learner or the ensemble?
+
+            # If boosting and len(model_list) > 0
+            if TRAIN_TYPE == "boost" and len(model_list) > 0:
+                # rme is the weight, normalize to add to 1
+                last_model = model_list[-1]
+                boost_pred = last_model.query(x_train)
+                boost_error = (y_train - boost_pred)**2
+                all_weights = boost_error / np.sum(boost_error)
+
+            # TODO Implement bagging
+            # Randomly select 60% of the train data
+            bag_subset_i = pd.DataFrame(np.arange(0, N)).sample(frac=BAG_SIZE, replace=False, weights=all_weights)
+
+            # Re-normalize weight subset
+            subset_weights = None
+            if TRAIN_TYPE == "boost" and len(model_list) > 0:
+                subset_weights = all_weights[bag_subset_i.values.flatten()]
+                subset_weights = subset_weights / np.sum(subset_weights)
+
+            # Resample from selection until subset n samples == original n samples
+            bag_N_i = bag_subset_i.sample(n=N, replace=True, weights=subset_weights).values.flatten()
+            bag_x_train, bag_y_train = x_train[bag_N_i], y_train[bag_N_i]
+
+            # Train model on subset, append model to list
+            # Same data (no bagging)
+            model.addEvidence(bag_x_train, bag_y_train)
+
+            # TODO Implement boosting
+            # If no model in list, randomly select 60% of train data
+            # else, test model on train data and generate predictions (just use weights param)
+            #       randomly select 60% of train data with prob weighted by error
+            # Resample from selection until subset n samples == original n samples
+            # Train model on subset, append model to list
+            model_list.append(model)
+        else:
+            model.addEvidence(x_train, y_train)
+            model_list.append(model)
+
+    # Get predictions
+    # print "Generating predictions...."
+    prediction_list = []
+    for model in model_list:
+        pred = model.query(x_test)
+        prediction_list.append(pred)
+    # Average predictions
+    prediction_arr = np.stack(prediction_list)
+    predictions = prediction_arr.mean(axis=0)
 
     cv_scores.append(np.sqrt(np.mean((y_test - predictions)**2)))
 

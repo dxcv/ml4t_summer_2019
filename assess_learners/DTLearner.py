@@ -64,6 +64,7 @@ class DTLearner:
             return np.array([[depth, np.nan, np.mean(y), np.nan, np.nan]])
 
         split_value = np.median(x[:, feature])
+
         left_index = x[:, feature] < split_value
         right_index = x[:, feature] >= split_value
 
