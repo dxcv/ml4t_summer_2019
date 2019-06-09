@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/assess_learners/.cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/assess_learners/.cache/v/cache/lastfailed" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assess_learners/BagLearner.py" beforeDir="false" afterPath="$PROJECT_DIR$/assess_learners/BagLearner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess_learners/DTLearner.py" beforeDir="false" afterPath="$PROJECT_DIR$/assess_learners/DTLearner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess_learners/RTLearner.py" beforeDir="false" afterPath="$PROJECT_DIR$/assess_learners/RTLearner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess_learners/comments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assess_learners/comments.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess_learners/points.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assess_learners/points.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assess_learners/RTLearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+            <state relative-caret-position="585">
+              <caret line="69" selection-start-line="69" selection-end-line="70" selection-end-column="74" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -59,13 +60,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assess_learners/BagLearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="78" column="23" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
+            <state relative-caret-position="-952">
+              <caret line="79" column="26" lean-forward="true" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
               <folding>
-                <element signature="e#539#577#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,8 +113,8 @@
         <option value="$PROJECT_DIR$/assess_learners/testlearner.py" />
         <option value="$PROJECT_DIR$/assess_learners/__init__.py" />
         <option value="$PROJECT_DIR$/assess_learners/DTLearner.py" />
-        <option value="$PROJECT_DIR$/assess_learners/BagLearner.py" />
         <option value="$PROJECT_DIR$/assess_learners/RTLearner.py" />
+        <option value="$PROJECT_DIR$/assess_learners/BagLearner.py" />
       </list>
     </option>
   </component>
@@ -320,23 +321,23 @@
       <workItem from="1559778836596" duration="9527000" />
       <workItem from="1559861796788" duration="15839000" />
       <workItem from="1559945338358" duration="4872000" />
-      <workItem from="1560007890704" duration="23850000" />
+      <workItem from="1560007890704" duration="25100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141908000" />
+    <option name="totallyTimeSpent" value="143158000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-30" width="1920" height="1110" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.114727855" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11898174" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.1620603" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40712744" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39308855" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -346,7 +347,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32914573" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.25472638" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.25472638" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -386,7 +387,7 @@
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$assess_portfolio.coverage" NAME="assess_portfolio Coverage Results" MODIFIED="1559485327198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assess_portfolio" />
     <SUITE FILE_PATH="coverage/ml4t$martingale.coverage" NAME="martingale Coverage Results" MODIFIED="1558570311870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/martingale" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$martingale.coverage" NAME="martingale Coverage Results" MODIFIED="1558926623540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ML4T_2019Spring$assess_learners.coverage" NAME="assess_learners Coverage Results" MODIFIED="1560037422563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assess_learners" />
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$assess_learners.coverage" NAME="assess_learners Coverage Results" MODIFIED="1560038624913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assess_learners" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$optimize_something.coverage" NAME="optimize_something Coverage Results" MODIFIED="1559494681066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/optimize_something" />
   </component>
   <component name="editorHistoryManager">
@@ -539,22 +540,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assess_learners/BagLearner.py">
+    <entry file="file://$PROJECT_DIR$/assess_learners/RTLearner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="78" column="23" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
+        <state relative-caret-position="585">
+          <caret line="69" selection-start-line="69" selection-end-line="70" selection-end-column="74" />
           <folding>
-            <element signature="e#539#577#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assess_learners/RTLearner.py">
+    <entry file="file://$PROJECT_DIR$/assess_learners/BagLearner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+        <state relative-caret-position="-952">
+          <caret line="79" column="26" lean-forward="true" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
