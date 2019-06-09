@@ -33,8 +33,9 @@ class BagLearner:
             # If boosting and len(model_list) > 0
             if self.boost and len(self._model_list) > 0:
                 # Get the training error of entire train set from last trained model
-                last_model = self._model_list[-1]
-                boost_pred = last_model.query(Xtrain)
+                # last_model = self._model_list[-1]
+                # boost_pred = last_model.query(Xtrain)
+                boost_pred = self.query(Xtrain)
                 # Squared error to penalize larger errors
                 boost_error = (Ytrain - boost_pred) ** 2  # Add small error to avoid non-zero errors
                 boost_error = boost_error + .000001
