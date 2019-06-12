@@ -33,23 +33,69 @@ import math
 # better for linear regression than decision trees 			  		 			 	 	 		 		 	  		   	  			  	
 def best4LinReg(seed=1489683273):
     np.random.seed(seed)
-    X = np.zeros((100, 2))
-    Y = np.random.random(size=(100,)) * 200 - 100
+    # X = np.zeros((100, 2))
+    # Y = np.random.random(size=(100,)) * 200 - 100
     # Here's is an example of creating a Y from randomly generated 			  		 			 	 	 		 		 	  		   	  			  	
     # X with multiple columns 			  		 			 	 	 		 		 	  		   	  			  	
-    # Y = X[:,0] + np.sin(X[:,1]) + X[:,2]**2 + X[:,3]**3 			  		 			 	 	 		 		 	  		   	  			  	
-    return X, Y
+    # Y = X[:,0] + np.sin(X[:,1]) + X[:,2]**2 + X[:,3]**3
+    # Start with static dataset size, then move to range (If I have to?)
+    n_rows = 1000  # from 10 to 1000
+    n_cols = 10  # from 2 to 10
+    # Linreg is parametric. Derive the y data using a linear function from the x with some random noise? (optional)
+    x = np.random.random(size=(n_rows, n_cols))
+    # Generate random parameters
+    params = np.random.random(size=(n_cols, ))
+    # Create y
+    y = np.dot(x, params)
+
+    # Seems to be even better
+
+    # x = np.random.uniform(size=(n_rows, n_cols))
+    #
+    # rando_funcs = [lambda x: x**2, lambda x: np.sqrt(x), lambda x: np.log10(x), lambda x: x**3, lambda x: np.log(x)]
+    #
+    # y_ = x.copy()
+    #
+    # for i in range(y_.shape[1]):
+    #     f = np.random.randint(0, 4)
+    #     y_[:, i] = rando_funcs[f](y_[:, i])
+    #
+    # y = np.sum(x, axis=1)
+
+    return x, y
 
 
 def best4DT(seed=1489683273):
     np.random.seed(seed)
-    X = np.zeros((100, 2))
-    Y = np.random.random(size=(100,)) * 200 - 100
-    return X, Y
+    # X = np.zeros((100, 2))
+    # Y = np.random.random(size=(100,)) * 200 - 100
+
+    # DT uses median and selects features based on correlation
+    # Create a function that takes randomly generate X data
+    # Just pick one or two columns, ensure at least 1 column has no relationship
+    # Use columns to map params
+    n_rows = 1000  # from 10 to 1000
+    n_cols = 10  # from 2 to 10
+
+    # The relationship can't be linear....
+
+    x = np.random.uniform(size=(n_rows, n_cols))
+
+    rando_funcs = [lambda x: x**2, lambda x: np.sqrt(x), lambda x: np.log10(x), lambda x: x**3, lambda x: np.log(x)]
+
+    y_ = x.copy()
+
+    for i in range(y_.shape[1]):
+        f = np.random.randint(0, 4)
+        y_[:, i] = rando_funcs[f](y_[:, i])
+
+    y = np.sum(x, axis=1)
+
+    return x, y
 
 
 def author():
-    return 'tb34'  # Change this to your user ID
+    return 'cfarr31'  # Change this to your user ID
 
 
 if __name__ == "__main__":
