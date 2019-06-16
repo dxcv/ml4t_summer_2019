@@ -89,7 +89,7 @@ def test_code():
     print
     print "best4RT() results"
     print "RMSE LR    : ", rmseLR
-    print "RMSE RT    : ", rmseDT
+    print "RMSE DT    : ", rmseDT
     if rmseDT < 0.9 * rmseLR:
         print "DT < 0.9 LR:  pass"
     else:
