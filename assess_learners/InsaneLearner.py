@@ -1,5 +1,5 @@
-import assess_learners.BagLearner as bl
-import assess_learners.LinRegLearner as lrl
+import BagLearner as bl
+import LinRegLearner as lrl
 
 
 class InsaneLearner:

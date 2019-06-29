@@ -1,5 +1,18 @@
 {
   "defeat_learners/grade_best4.py::test_learners[Test Case 1: Best4LinReg-best4lr-15-10-row_limits0-col_limits0-1489683274]": true, 
   "defeat_learners/grade_best4.py::test_learners[Test Case 2: Best4DT-best4dt-15-10-row_limits1-col_limits1-1489683274]": true, 
-  "defeat_learners/grade_best4.py::test_learners[Test for author() method-author-None-None-None-None-None]": true
+  "defeat_learners/grade_best4.py::test_learners[Test for author() method-author-None-None-None-None-None]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 1-basic-inputs0-outputs0]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 10, impact and commission-both-inputs11-outputs11]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 11, commission-commission-inputs9-outputs9]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 12, impact-impact-inputs10-outputs10]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 2-basic-inputs1-outputs1]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 3-basic-inputs2-outputs2]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 4-basic-inputs3-outputs3]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 5-basic-inputs4-outputs4]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 6-basic-inputs5-outputs5]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 7-basic-inputs6-outputs6]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 8-basic-inputs7-outputs7]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[Orders 9-basic-inputs8-outputs8]": true, 
+  "marketsim/grade_marketsim.py::test_marketsim[author() test-author-None-None]": true
 }

@@ -20,10 +20,9 @@ students of CS 7646 is prohibited and subject to being investigated as a
 GT honor code violation. 			  		 			 	 	 		 		 	  		   	  			  	
  			  		 			 	 	 		 		 	  		   	  			  	
 -----do not edit anything above this line--- 			  		 			 	 	 		 		 	  		   	  			  	
- 			  		 			 	 	 		 		 	  		   	  			  	
-Student Name: Tucker Balch (replace with your name) 			  		 			 	 	 		 		 	  		   	  			  	
-GT User ID: tb34 (replace with your User ID) 			  		 			 	 	 		 		 	  		   	  			  	
-GT ID: 900897987 (replace with your GT ID) 			  		 			 	 	 		 		 	  		   	  			  	
+Student Name: Chris Farr
+GT User ID: cfarr31
+GT ID: 90347082
 """
 import numpy as np
 
