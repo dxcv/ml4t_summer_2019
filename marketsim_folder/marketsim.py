@@ -31,30 +31,19 @@ import datetime as dt
 import os
 from util import get_data, plot_data
 
-# os.chdir(os.path.join(os.getcwd(), "marketsim_folder"))
-
-"""
-Commissions: For each trade that you execute, charge a commission according to the parameter sent. Treat that as a 
-deduction from your cash balance. 
-
-Market impact: For each trade that you execute, assume that the stock price moves 
-against you according to the impact parameter. So if you are buying, assume the price goes up before your purchase. 
-Similarly, if selling, assume the price drops 50 bps before the sale. For simplicity treat the market impact penalty 
-as a deduction from your cash balance. 
-"""
-
 
 def compute_portvals(orders_file="./orders/orders-01.csv", start_val=1000000, commission=9.95, impact=0.005):
 
-    # orders_file = "./additional_orders/orders-short.csv"
     # this is the function the autograder will call to test your code
     # NOTE: orders_file may be a string, or it may be a file object. Your 			  		 			 	 	 		 		 	  		   	  			  	
     # code should work correctly with either input 			  		 			 	 	 		 		 	  		   	  			  	
     # TODO: Your code here
-    # os.getcwd()
     # Read orders_file if string
-    orders = pd.read_csv(orders_file, parse_dates=True)
-
+    orders = pd.read_csv(orders_file)
+    orders["Date"] = pd.to_datetime(orders["Date"])
+    orders = orders.sort_values(by=["Date"])
+    # If NA's in orders, then just remove them
+    orders = orders.dropna().reset_index(drop=True)
     # Build prices df
     #  Get symbols from orders file
     symbols = orders["Symbol"].drop_duplicates().tolist()
@@ -76,10 +65,18 @@ def compute_portvals(orders_file="./orders/orders-01.csv", start_val=1000000, co
         order_type = orders.iloc[i]["Order"]
         shares = orders.iloc[i]["Shares"]
         date = orders.iloc[i]["Date"]
+
+        # Handle trades submitted on non-trading days by going to next trading day
+        if date not in prices.index:
+            # date = prices.loc[pd.date_range(date, end_date)].dropna().index[0]
+            # They said not to fill the order
+            continue
+
         trade_vol = shares if order_type == "BUY" else -shares
+        trade_price = prices.loc[date, sym]
+        impact_adj_trade_price = trade_price * (1+impact) if order_type == "BUY" else trade_price * (1-impact)
         trades.loc[date, sym] += trade_vol
-        impact_adj_trade_vol = trade_vol * (1+impact) if order_type == "BUY" else trade_vol * (1-impact)
-        trades.loc[date, "CASH"] -= (impact_adj_trade_vol * prices.loc[date, sym]) + commission
+        trades.loc[date, "CASH"] -= (trade_vol * impact_adj_trade_price) + commission
 
     # Build holdings df
     #  Cumulative sum of trades starting at starting_cash (start_val)
@@ -90,8 +87,7 @@ def compute_portvals(orders_file="./orders/orders-01.csv", start_val=1000000, co
     # Sum values df to get portfolio value
     port_vals = values.sum(axis=1)
 
-    return port_vals.to_frame()
-
+    return port_vals.to_frame().fillna(0)
 
 
 def test_code():
