@@ -16,11 +16,11 @@ def compute_portvals(trades, start_val=1000000, commission=0, impact=0):
 
     # Build prices df
     #  Get symbols from orders file
-    symbols = ["JPM"]
+    symbol = "JPM"
     #  Get first and last date from order file
     start_date, end_date = trades.index.min(), trades.index.max()
     #  Get data from get_data function
-    prices = get_data(symbols, pd.date_range(start_date, end_date))
+    prices = get_data([symbol], pd.date_range(start_date, end_date))
     prices.index = pd.to_datetime(prices.index)
     prices = prices.fillna(method="ffill").fillna(method="bfill")
     #  Add cash column that equals 1
@@ -41,9 +41,11 @@ def compute_portvals(trades, start_val=1000000, commission=0, impact=0):
             # date = prices.loc[pd.date_range(date, end_date)].dropna().index[0]
             # They said not to fill the order
             continue
+        if trades.loc[i, symbol] == 0:
+            continue
 
-        trade_vol = trades.loc[i, "JPM"]
-        trade_price = prices.loc[i, "JPM"]
+        trade_vol = trades.loc[i, symbol]
+        trade_price = prices.loc[i, symbol]
         impact_adj_trade_price = trade_price * (1+impact) if trade_vol > 0 else trade_price * (1-impact)
         trades.loc[i, "CASH"] -= (trade_vol * impact_adj_trade_price) + commission
 
@@ -56,4 +58,4 @@ def compute_portvals(trades, start_val=1000000, commission=0, impact=0):
     # Sum values df to get portfolio value
     port_vals = values.fillna(method="ffill").fillna(method="bfill").sum(axis=1)
 
-    return port_vals.to_frame().fillna(0)
+    return port_vals.to_frame()

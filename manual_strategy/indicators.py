@@ -29,72 +29,33 @@ import os
 
 # os.chdir(os.path.join(os.getcwd(), "manual_strategy"))
 
-sym = ["JPM"]
-
-in_start_date = pd.to_datetime("January 1, 2008")
-in_end_date = pd.to_datetime("December 31 2009")
-out_start_date = pd.to_datetime("January 1, 2010")
-out_end_date = pd.to_datetime("December 31 2011")
-
-# Trim to in sample range with a 30 day prior range for features
-max_lookback = 30
-start_date = in_start_date - datetime.timedelta(days=max_lookback)
-end_date = in_end_date
-
-# Normalize prices
-prices = get_data(symbols=sym, dates=pd.date_range(start_date, end_date), addSPY=False)
-prices = prices.fillna(method="ffill").fillna(method="bfill")
-prices["JPM"] = prices["JPM"] / prices["JPM"][0]
-
-plot_start = in_start_date + datetime.timedelta(days=180)
-plot_end = in_start_date + datetime.timedelta(days=250)
-
-
-""" Moving Average """
+""" Bollinger Band """
 
 # Simple statistic mean of previous n day closing price:
 
 
-moving_average_df = prices.copy()
-moving_average_df["moving_average"] = moving_average_df[sym].rolling(window=12).mean()
-moving_average_df["moving_std"] = moving_average_df[sym].rolling(window=12).std()
-moving_average_df["simple_moving_average"] = moving_average_df.apply(lambda x: (x[sym[0]] / x["moving_average"]) - 1, axis=1)
+def add_bollinger_band_indicator(df, symbol="JPM", add_helper_data=False):
+    bollinger_df = df.copy()
+    bollinger_df["moving_average"] = bollinger_df[symbol].rolling(window=12).mean()
+    bollinger_df["moving_std"] = bollinger_df[symbol].rolling(window=12).std()
+    bollinger_df["simple_moving_average"] = bollinger_df.apply(lambda x: (x[symbol] / x["moving_average"]) - 1, axis=1)
 
-# Add bollinger bands
-moving_average_df["bollinger_max"] = moving_average_df["moving_average"] + moving_average_df["moving_std"] * 2
-moving_average_df["bollinger_min"] = moving_average_df["moving_average"] - moving_average_df["moving_std"] * 2
+    # Add bollinger bands
+    bollinger_df["bollinger_max"] = bollinger_df["moving_average"] + bollinger_df["moving_std"] * 2
+    bollinger_df["bollinger_min"] = bollinger_df["moving_average"] - bollinger_df["moving_std"] * 2
 
-# Bollinger bands as indicator
-# (price - sma) / (2 * std)
-moving_average_df["bollinger_band"] = moving_average_df.apply(
-    lambda x: (x["JPM"] - x["moving_average"]) / (2 * x["moving_std"]), axis=1)
+    # Bollinger bands as indicator
+    # (price - sma) / (2 * std)
+    bollinger_df["bollinger_band"] = bollinger_df.apply(
+        lambda x: (x[symbol] - x["moving_average"]) / (2 * x["moving_std"]), axis=1)
 
+    if add_helper_data:
+        cols = [symbol, "moving_average", "bollinger_max", "bollinger_min", "bollinger_band"]
+    else:
+        cols = ["bollinger_band"]
 
-# Plot
-plot_df = moving_average_df.loc[plot_start:plot_end, ["JPM", "moving_average", "bollinger_max", "bollinger_min"]].copy()
+    return bollinger_df.loc[:, cols]
 
-plot_df.plot(title="Simple Moving Average\nBollinger Bands")
-
-
-def above_upper(i, df):
-    return df.loc[i, "JPM"] > df.loc[i, "bollinger_max"]
-
-
-def below_lower(i, df):
-    return df.loc[i, "JPM"] < df.loc[i, "bollinger_min"]
-
-
-for i in range(1, len(plot_df.index)):
-
-    c_i = plot_df.index[i]
-    l_i = plot_df.index[i-1]
-
-    if above_upper(l_i, plot_df) and not above_upper(c_i, plot_df):
-        plt.axvline(x=c_i, color="red")
-    if below_lower(l_i, plot_df) and not below_lower(c_i, plot_df):
-        plt.axvline(x=c_i, color="green")
-
-plt.show()
 
 # TODO Indicator signal: Price crosses over sma, along with momentum for signal
 #  If SMA is positive, sell, if negative, buy: given that momentum is strong when it crosses
@@ -119,43 +80,36 @@ plt.show()
 # EMA(i) = (CP(i) - EMA(i-1)) * Multiplier + EMA(i-1)
 # Multiplier = 2 / (no of days to be considered + 1)
 
-macd_df = prices.copy()
 
-macd_df["ema_12"] = macd_df[sym].ewm(span=12, adjust=False).mean()
-macd_df["ema_26"] = macd_df[sym].ewm(span=26, adjust=False).mean()
-macd_df["macd"] = macd_df["ema_12"] - macd_df["ema_26"]
+def add_macd(df, symbol, add_helper_data=False):
+    macd_df = df.copy()
 
-# Signal or average series
-macd_df["macd_signal_line"] = macd_df["macd"].ewm(span=9, adjust=False).mean()
+    macd_df["ema_12"] = macd_df[symbol].ewm(span=12, adjust=False).mean()
+    macd_df["ema_26"] = macd_df[symbol].ewm(span=26, adjust=False).mean()
+    macd_df["macd"] = macd_df["ema_12"] - macd_df["ema_26"]
 
-# Divergence line
-macd_df["divergence"] = (macd_df["macd"] / macd_df["macd_signal_line"]) - 1
+    # Signal or average series
+    macd_df["macd_signal_line"] = macd_df["macd"].ewm(span=9, adjust=False).mean()
 
-macd_df = macd_df.loc[in_start_date:in_end_date, :].copy()
+    # Divergence line
+    macd_df["divergence"] = (macd_df["macd"] / macd_df["macd_signal_line"]) - 1
 
-# Plot the price and macd/macd signal line
-# Add lines where they cross, color green if bullish cross, red is bearish cross
-macd_df["bullish_macd"] = macd_df.apply(lambda x: x["macd"] > x["macd_signal_line"], axis=1)
-macd_df["bullish_cross_over"] = macd_df["bullish_macd"].rolling(window=2).apply(lambda x: all(x[-1:]) and not x[0]).fillna(0).astype(bool)
-macd_df["bearish_cross_over"] = macd_df["bullish_macd"].rolling(window=2).apply(lambda x: not any(x[-1:]) and x[0]).fillna(0).astype(bool)
+    # Plot the price and macd/macd signal line
+    # Add lines where they cross, color green if bullish cross, red is bearish cross
+    macd_df["bullish_macd"] = macd_df.apply(lambda x: x["macd"] > x["macd_signal_line"], axis=1)
+    macd_df["bullish_cross_over"] = macd_df["bullish_macd"].rolling(window=2).apply(lambda x: all(x[-1:]) and not x[0]).fillna(0).astype(bool)
+    macd_df["bearish_cross_over"] = macd_df["bullish_macd"].rolling(window=2).apply(lambda x: not any(x[-1:]) and x[0]).fillna(0).astype(bool)
 
-
+    if add_helper_data:
+        cols = [symbol, "macd", "macd_signal_line", "bullish_macd", "bullish_cross_over", "bearish_cross_over"]
+    else:
+        cols = ["bearish_cross_over"]
+    return macd_df.loc[:, cols]
 
 
 # plot_start = in_start_date + datetime.timedelta(days=60)
 # plot_end = in_start_date + datetime.timedelta(days=180)
-plot_cols = ["JPM", "macd", "macd_signal_line"]
-line_cols = ["bullish_cross_over", "bearish_cross_over"]
-plot_df = macd_df.loc[plot_start:plot_end, plot_cols + line_cols]
 
-plot_df.loc[:, plot_cols].plot(secondary_y="JPM", title="Moving Average Convergence/Divergence")
-for i in plot_df.index:
-    if plot_df.loc[i, "bullish_cross_over"]:
-        plt.axvline(x=i, color="green")
-    if plot_df.loc[i, "bearish_cross_over"]:
-        plt.axvline(x=i, color="red")
-
-plt.show()
 
 # the MACD series proper, the "signal" or "average" series, and the "divergence" series which is the difference
 # between the two. The MACD series is the difference between a "fast" (short period) exponential moving average (
@@ -198,20 +152,20 @@ MOMENTUM INDICATORS
 
 """ Lecture version Momentum """
 
-momentum_df = prices.copy()
-momentum_df["momentum"] = momentum_df["JPM"].rolling(window=9).apply(lambda x: (x[-1] / x[0]) - 1)
+
+def add_momentum(df, symbol, add_helper_data=False):
+    momentum_df = df.copy()
+    momentum_df["momentum"] = momentum_df[symbol].rolling(window=9).apply(lambda x: (x[-1] / x[0]) - 1)
+
+    if add_helper_data:
+        cols = [symbol, "momentum"]
+    else:
+        cols = ["momentum"]
+
+    return momentum_df.loc[:, cols]
 
 # plot_start = in_start_date + datetime.timedelta(days=60)
 # plot_end = in_start_date + datetime.timedelta(days=180)
-
-plot_df = momentum_df.loc[plot_start:plot_end, :]
-
-plots = plot_df.plot(secondary_y="momentum", title="Momentum")
-
-plt.axhline(y=.1, color="green")
-
-plt.axhline(y=-.1, color="red")
-plt.show()
 
 # Short strategy: sell signal from macd with momentum? TODO Start here!
 
@@ -229,44 +183,24 @@ plt.show()
 # Conversely, the investor needs to consider buying an issue that is below the 20 line and is starting to move up
 # with increased volume.
 
-stoch_kd_df = prices.copy()
 
-stoch_kd_df["K"] = stoch_kd_df[sym[0]].rolling(window=9).apply(
-    lambda x: (x[-1] - np.min(x)) / (np.max(x) - np.min(x)))
-stoch_kd_df["D"] = stoch_kd_df["K"].rolling(window=3).mean()
+def add_stochastic_d(df, symbol, add_helper_data=False):
+    stoch_kd_df = df.copy()
 
-# plot_start = in_start_date + datetime.timedelta(days=60)
-# plot_end = in_start_date + datetime.timedelta(days=180)
+    stoch_kd_df["K"] = stoch_kd_df[symbol].rolling(window=9).apply(
+        lambda x: (x[-1] - np.min(x)) / (np.max(x) - np.min(x)))
+    stoch_kd_df["D"] = stoch_kd_df["K"].rolling(window=3).mean()
 
-plot_df = stoch_kd_df.loc[plot_start:plot_end, ["JPM", "D"]]
+    if add_helper_data:
+        cols = [symbol, "K", "D"]
+    else:
+        cols = ["D"]
 
-plot_df.plot(secondary_y=["D"], title="Stochastic D")
+    return stoch_kd_df.loc[:, cols]
 
-plt.axhline(y=.80, color="green")
-
-plt.axhline(y=.20, color="red")
-
-plt.show()
 
 # When D is above the 80% mark, the stock is in overbought territory, consider selling
 # When D is below the 20% mark, the stock is in oversold territory, consider buying
-
-
-# TODO Produce a single DF with all indicators (no helper data)
-
-# sma_indicator
-bollinger_indicator = moving_average_df.loc[:, "bollinger_band"].copy()
-# macd, signal_line
-macd = macd_df.loc[:, ["bearish_cross_over"]].copy()
-# momentum
-momentum = momentum_df.loc[:, ["momentum"]].copy()
-# Stochastic KD
-stochastic_d = stoch_kd_df.loc[:, ["D"]].copy()
-
-
-# Combine all into indicators df and filter to in_sample range
-indicator_df = pd.concat([bollinger_indicator, macd, momentum, stochastic_d], axis=1)
-indicator_df = indicator_df.loc[in_start_date:in_end_date].copy()
 
 
 # Strategy
@@ -277,3 +211,112 @@ indicator_df = indicator_df.loc[in_start_date:in_end_date].copy()
 # Longing
 # Bollinger indicator falls below -1
 
+
+def add_all_indicators(df, symbol, add_helper_data=False):
+    bollinger = add_bollinger_band_indicator(df, symbol, add_helper_data)
+    macd = add_macd(df, symbol, add_helper_data)
+    momentum = add_momentum(df, symbol, add_helper_data)
+    stochastic_d = add_stochastic_d(df, symbol, add_helper_data)
+    df = pd.concat([df, bollinger, macd, momentum, stochastic_d], axis=1)
+    return df
+
+
+if __name__ == "__main__":
+
+    symbol = "JPM"
+
+    in_start_date = pd.to_datetime("January 1, 2008")
+    in_end_date = pd.to_datetime("December 31 2009")
+    out_start_date = pd.to_datetime("January 1, 2010")
+    out_end_date = pd.to_datetime("December 31 2011")
+
+    # Trim to in sample range with a 30 day prior range for features
+    max_lookback = 30
+    start_date = in_start_date - datetime.timedelta(days=max_lookback)
+    end_date = in_end_date
+
+    # Normalize prices
+    prices = get_data(symbols=[symbol], dates=pd.date_range(start_date, end_date), addSPY=False)
+    prices = prices.fillna(method="ffill").fillna(method="bfill")
+    prices["JPM"] = prices["JPM"] / prices["JPM"][0]
+
+    plot_start = in_start_date + datetime.timedelta(days=180)
+    plot_end = in_start_date + datetime.timedelta(days=250)
+
+    """ Plot Bollinger Bands """
+
+    moving_average_df = add_bollinger_band_indicator(prices, "JPM", True)
+
+    # Plot
+    plot_df = moving_average_df.loc[plot_start:plot_end,
+              ["JPM", "moving_average", "bollinger_max", "bollinger_min"]].copy()
+
+    plot_df.plot(title="Simple Moving Average\nBollinger Bands")
+
+
+    def above_upper(i, df):
+        return df.loc[i, "JPM"] > df.loc[i, "bollinger_max"]
+
+
+    def below_lower(i, df):
+        return df.loc[i, "JPM"] < df.loc[i, "bollinger_min"]
+
+
+    for i in range(1, len(plot_df.index)):
+
+        c_i = plot_df.index[i]
+        l_i = plot_df.index[i - 1]
+
+        if above_upper(l_i, plot_df) and not above_upper(c_i, plot_df):
+            plt.axvline(x=c_i, color="black")
+        if below_lower(l_i, plot_df) and not below_lower(c_i, plot_df):
+            plt.axvline(x=c_i, color="lightblue")
+
+    plt.ylabel("Normalized Price")
+    plt.xlabel("Date")
+    # plt.show()
+    plt.savefig("bollinger_plot.png")
+
+    """ MACD Plot """
+
+    macd_df = add_macd(prices, symbol, True)
+    plot_cols = ["JPM", "macd", "macd_signal_line"]
+    line_cols = ["bullish_cross_over", "bearish_cross_over"]
+    plot_df = macd_df.loc[plot_start:plot_end, plot_cols + line_cols]
+
+    plot_df.loc[:, plot_cols].plot(secondary_y="JPM", title="Moving Average Convergence/Divergence")
+    for i in plot_df.index:
+        if plot_df.loc[i, "bullish_cross_over"]:
+            plt.axvline(x=i, color="lightblue")
+        if plot_df.loc[i, "bearish_cross_over"]:
+            plt.axvline(x=i, color="black")
+    plt.ylabel("Normalized Price")
+    # plt.show()
+    plt.savefig("macd_plot.png")
+
+    """ Plot Momentum """
+
+    momentum_df = add_momentum(prices, "JPM", True)
+    plot_df = momentum_df.loc[plot_start:plot_end, :]
+
+    plots = plot_df.plot(secondary_y="momentum", title="Momentum")
+
+    plt.axhline(y=.1, color="black")
+
+    plt.axhline(y=-.1, color="lightblue")
+    plt.ylabel("Momentum Score")
+    # plt.show()
+    plt.savefig("momentum_plot.png")
+
+    """ Stochastic D Plot """
+
+    stoch_kd_df = add_stochastic_d(prices, symbol, add_helper_data=True)
+    plot_df = stoch_kd_df.loc[plot_start:plot_end, ["JPM", "D"]]
+
+    plot = plot_df.plot(secondary_y=["D"], title="Stochastic D")
+    dir(plot)
+    plt.axhline(y=.80, color="black")
+    plt.axhline(y=.20, color="lightblue")
+    plt.ylabel("Stochastic D Score")
+    # plt.show()
+    plt.savefig("stochastic_d_plot.png")

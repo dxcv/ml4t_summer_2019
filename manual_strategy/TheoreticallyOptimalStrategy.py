@@ -15,6 +15,20 @@ from marketsimcode import compute_portvals
 
 # os.chdir(os.path.join(os.getcwd(), "manual_strategy"))
 
+def calculate_statistics(port_val):
+    # Get portfolio statistics (note: std_daily_ret = volatility)
+    # Calculate...
+    # Daily return
+    daily_ret = (port_val / port_val.shift(1)) - 1
+    daily_ret = daily_ret.iloc[1:]
+    # Cumulative return
+    cr = port_val.iloc[-1] / port_val.iloc[0] - 1
+    # Average daily return
+    adr = daily_ret.mean()
+    # Std daily return
+    sddr = daily_ret.std()
+    return {"cum_ret": cr, "avg_day_ret": adr, "std_day_ret": sddr}
+
 
 def testPolicy(symbol="AAPL", sd=dt.datetime(2010, 1, 1), ed=dt.datetime(2011, 12, 31), sv=100000):
     prices = get_data(symbols=[symbol], dates=pd.date_range(sd, ed), addSPY=False)
@@ -59,52 +73,57 @@ def author():
     return 'cfarr31'  # replace tb34 with your Georgia Tech username.
 
 
-sym = ["JPM"]
+if __name__ == "__main__":
 
-in_start_date = pd.to_datetime("January 1, 2008")
-in_end_date = pd.to_datetime("December 31 2009")
-out_start_date = pd.to_datetime("January 1, 2010")
-out_end_date = pd.to_datetime("December 31 2011")
+    sym = ["JPM"]
 
-# Trim to in sample range with a 30 day prior range for features
-# max_lookback = 0
-# start_date = in_start_date - datetime.timedelta(days=max_lookback)
-# end_date = in_end_date
+    in_start_date = pd.to_datetime("January 1, 2008")
+    in_end_date = pd.to_datetime("December 31 2009")
 
 
-# Benchmark trades
-# Benchmark: The performance of a portfolio starting with $100,000 cash, investing in 1000 shares of JPM and holding
-# that position.
-prices = get_data(symbols=["JPM"], dates=pd.date_range(in_start_date, in_end_date), addSPY=False)
-prices = prices.dropna()  # Instead of fill when creating trades
-benchmark_trades = pd.DataFrame(columns=["JPM"], index=prices.index, data=0)
-benchmark_trades.iloc[0] = 1000
-
-# Theoretically optimal strategy
-trades = testPolicy("JPM", sd=in_start_date, ed=in_end_date)
+    # Trim to in sample range with a 30 day prior range for features
+    # max_lookback = 0
+    # start_date = in_start_date - datetime.timedelta(days=max_lookback)
+    # end_date = in_end_date
 
 
-# Benchmark portvals
-benchmark_portvals = compute_portvals(benchmark_trades, commission=0, impact=0)
-benchmark_portvals.columns = ["Benchmark"]
+    # Benchmark trades
+    # Benchmark: The performance of a portfolio starting with $100,000 cash, investing in 1000 shares of JPM and holding
+    # that position.
+    prices = get_data(symbols=["JPM"], dates=pd.date_range(in_start_date, in_end_date), addSPY=False)
+    prices = prices.dropna()  # Instead of fill when creating trades
+    benchmark_trades = pd.DataFrame(columns=["JPM"], index=prices.index, data=0)
+    benchmark_trades.iloc[0] = 1000
 
-# Optimal portvals
-portvals = compute_portvals(trades, commission=0, impact=0)
-portvals.columns = ["Optimal"]
+    # Theoretically optimal strategy
+    trades = testPolicy("JPM", sd=in_start_date, ed=in_end_date)
 
-plot_df = pd.concat([portvals, benchmark_portvals], axis=1)
+    # Benchmark portvals
+    benchmark_portvals = compute_portvals(benchmark_trades, commission=0, impact=0)
+    benchmark_portvals.columns = ["Benchmark"]
 
-plot_df = plot_df / plot_df.iloc[0]
-plot_df.loc[:, ["Optimal", "Benchmark"]].plot(color=["red", "green"], title="Theoretically Optimal Strategy")
-plt.show()
+    # Optimal portvals
+    portvals = compute_portvals(trades, commission=0, impact=0)
+    portvals.columns = ["Optimal"]
 
+    plot_df = pd.concat([portvals, benchmark_portvals], axis=1)
 
-"""
-TODO's
-You should also report in text:
+    plot_df = plot_df / plot_df.iloc[0]
+    plot_df.loc[:, ["Optimal", "Benchmark"]].plot(color=["red", "green"], title="Theoretically Optimal Strategy")
+    plt.ylabel("Normalized Price")
+    plt.savefig("optimal_plot.png")
 
-    Cumulative return of the benchmark and portfolio
-    Stdev of daily returns of benchmark and portfolio
-    Mean of daily returns of benchmark and portfolio
-"""
+    print "Benchmark Stats"
+    print calculate_statistics(benchmark_portvals)
+    print "Optimal Stats"
+    print calculate_statistics(portvals)
+
+    """
+    TODO's
+    You should also report in text:
+    
+        Cumulative return of the benchmark and portfolio
+        Stdev of daily returns of benchmark and portfolio
+        Mean of daily returns of benchmark and portfolio
+    """
 
