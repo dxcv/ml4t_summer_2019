@@ -124,6 +124,9 @@ def testPolicy(symbol="AAPL", sd=dt.datetime(2010, 1, 1), ed=dt.datetime(2011, 1
     return trades, signal_df
 
 
+def author():
+    return 'cfarr31'  # replace tb34 with your Georgia Tech username.
+
 # TODO Use indicators_df to create a buy/sell/hold signal column named "signal"
 
 # My strategy:

@@ -59,3 +59,7 @@ def compute_portvals(trades, start_val=1000000, commission=0, impact=0):
     port_vals = values.fillna(method="ffill").fillna(method="bfill").sum(axis=1)
 
     return port_vals.to_frame()
+
+
+def author():
+    return 'cfarr31'  # replace tb34 with your Georgia Tech username.

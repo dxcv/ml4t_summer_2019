@@ -15,6 +15,7 @@ from marketsimcode import compute_portvals
 
 # os.chdir(os.path.join(os.getcwd(), "manual_strategy"))
 
+
 def calculate_statistics(port_val):
     # Get portfolio statistics (note: std_daily_ret = volatility)
     # Calculate...
@@ -80,13 +81,10 @@ if __name__ == "__main__":
     in_start_date = pd.to_datetime("January 1, 2008")
     in_end_date = pd.to_datetime("December 31 2009")
 
-
     # Trim to in sample range with a 30 day prior range for features
     # max_lookback = 0
     # start_date = in_start_date - datetime.timedelta(days=max_lookback)
     # end_date = in_end_date
-
-
     # Benchmark trades
     # Benchmark: The performance of a portfolio starting with $100,000 cash, investing in 1000 shares of JPM and holding
     # that position.
@@ -117,13 +115,3 @@ if __name__ == "__main__":
     print calculate_statistics(benchmark_portvals)
     print "Optimal Stats"
     print calculate_statistics(portvals)
-
-    """
-    TODO's
-    You should also report in text:
-    
-        Cumulative return of the benchmark and portfolio
-        Stdev of daily returns of benchmark and portfolio
-        Mean of daily returns of benchmark and portfolio
-    """
-

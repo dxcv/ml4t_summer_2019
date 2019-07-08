@@ -221,6 +221,10 @@ def add_all_indicators(df, symbol, add_helper_data=False):
     return df
 
 
+def author():
+    return 'cfarr31'  # replace tb34 with your Georgia Tech username.
+
+
 if __name__ == "__main__":
 
     symbol = "JPM"
