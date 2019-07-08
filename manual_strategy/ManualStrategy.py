@@ -76,16 +76,18 @@ def short_sell_signal(x):
 # Bearish macd cross-over after recent overbought indicators from stochastic D and Momentum
 bearish_macd = indicator_df.loc[:, "bearish_cross_over"]
 #  Any overbought in last 3 days (D > .8 or Momentum > .1)
-overbought_momentum = indicator_df["momentum"].rolling(window=10).apply(lambda x: any(x > .1)).fillna(0).astype(bool)
-overbought_stochastic_d = indicator_df["D"].rolling(window=10).apply(lambda x: any(x > .8)).fillna(0).astype(bool)
+overbought_momentum = indicator_df["momentum"].rolling(window=12).apply(lambda x: any(x > .1)).fillna(0).astype(bool)
+overbought_stochastic_d = indicator_df["D"].rolling(window=12).apply(lambda x: any(x > .8)).fillna(0).astype(bool)
 overbought = overbought_momentum | overbought_stochastic_d
 short_sell = (bearish_macd & overbought).to_frame()
 short_sell.columns = ["short"]
+short_sell.sum()
 
 # Longing
 # Bollinger indicator falls below -1
-long_buy = indicator_df["bollinger_band"].apply(lambda x: x < -1).to_frame()
+long_buy = indicator_df["bollinger_band"].apply(lambda x: x < -1.01).to_frame()
 long_buy.columns = ["long"]
+long_buy.sum()
 
 signal = pd.concat([short_sell, long_buy], axis=1)
 signal = signal.apply(lambda x: 1 if x["long"] else -1 if x["short"] else 0, axis=1).to_frame()
@@ -151,3 +153,6 @@ plot_df = pd.concat([portvals, benchmark_portvals], axis=1)
 plot_df = plot_df / plot_df.iloc[0]
 plot_df.loc[:, ["Benchmark", "Manual"]].plot(color=["green", "red"], title="Manual Strategy", secondary_y="JPM")
 plt.show()
+
+print "Performance %.1f%%" % ((plot_df["Manual"][-1] - 1) * 100)
+

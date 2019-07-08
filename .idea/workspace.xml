@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1303">
-              <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+            <state relative-caret-position="418">
+              <caret line="156" column="64" lean-forward="true" selection-start-line="72" selection-end-line="156" selection-end-column="64" />
               <folding>
                 <element signature="e#309#345#0" expanded="true" />
               </folding>
@@ -514,16 +513,15 @@
       <workItem from="1561824957293" duration="102000" />
       <workItem from="1561835007866" duration="14708000" />
       <workItem from="1562053853415" duration="3739000" />
-      <workItem from="1562419933090" duration="53858000" />
+      <workItem from="1562419933090" duration="54117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270593000" />
+    <option name="totallyTimeSpent" value="270852000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.41228557" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24958494" />
@@ -887,8 +885,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1303">
-          <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+        <state relative-caret-position="418">
+          <caret line="156" column="64" lean-forward="true" selection-start-line="72" selection-end-line="156" selection-end-column="64" />
           <folding>
             <element signature="e#309#345#0" expanded="true" />
           </folding>
