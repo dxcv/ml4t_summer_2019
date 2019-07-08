@@ -4,21 +4,6 @@ indicators.py should generate the charts that illustrate your indicators in the 
 
 Please add in an author function to each file.
 
- For your report, trade only the symbol JPM. This will enable us to more easily compare results.
-You may use data from other symbols (such as SPY) to inform your strategy.
-The in sample/development period is January 1, 2008 to December 31 2009.
-The out of sample/testing period is January 1, 2010 to December 31 2011.
-Starting cash is $100,000.
-Allowable positions are: 1000 shares long, 1000 shares short, 0 shares.
-Benchmark: The performance of a portfolio starting with $100,000 cash, investing in 1000 shares of JPM and holding that
-position.
-There is no limit on leverage.
-Transaction costs for ManualStrategy: Commission: $9.95, Impact: 0.005.
-Transaction costs for TheoreticallyOptimalStrategy: Commission: $0.00, Impact: 0.00.
-
-
-https://www.sciencedirect.com/science/article/pii/S2405918815300179?via%3Dihub
-
 """
 from util import get_data, plot_data
 import pandas as pd
@@ -26,8 +11,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 import datetime
 import os
-
-# os.chdir(os.path.join(os.getcwd(), "manual_strategy"))
 
 """ Bollinger Band """
 
@@ -57,18 +40,8 @@ def add_bollinger_band_indicator(df, symbol="JPM", add_helper_data=False):
     return bollinger_df.loc[:, cols]
 
 
-# TODO Indicator signal: Price crosses over sma, along with momentum for signal
-#  If SMA is positive, sell, if negative, buy: given that momentum is strong when it crosses
-
-# moving_average_df.loc[plot_start:plot_end, :].plot()
-# plt.show()
-
-# TODO Indicator signal: Price crosses back into bands
-
-
 """ Moving Average Convergence and Divergence """
 
-# TODO Learn to interpret
 #  When the shorter-term MA cross above the longer-term MA, it's a buy signal
 #  When the shorter-term MA crosses below the longer-term MA, its a sell signal
 # https://towardsdatascience.com/implementing-macd-in-python-cc9b2280126a
@@ -107,16 +80,6 @@ def add_macd(df, symbol, add_helper_data=False):
     return macd_df.loc[:, cols]
 
 
-# plot_start = in_start_date + datetime.timedelta(days=60)
-# plot_end = in_start_date + datetime.timedelta(days=180)
-
-
-# the MACD series proper, the "signal" or "average" series, and the "divergence" series which is the difference
-# between the two. The MACD series is the difference between a "fast" (short period) exponential moving average (
-# EMA), and a "slow" (longer period) EMA of the price series. The average series is an EMA of the MACD series itself.
-
-# TODO How to use:
-
 # https://en.wikipedia.org/wiki/MACD
 
 # A "signal-line crossover" occurs when the MACD and signal lines cross; that is, when the divergence (the bar
@@ -135,15 +98,6 @@ def add_macd(df, symbol, add_helper_data=False):
 # not confirm with a new low of its own. A "negative divergence" or "bearish divergence" occurs when the price makes
 # a new high but the MACD does not confirm with a new high of its own.[7] A divergence with respect to price may
 # occur on the MACD line and/or the MACD Histogram
-
-# My strategy:
-#  If macd is positive (bullish) and macd > signal_line (signal-line cross-over) buy
-#  If macd is negative (bearish) and macd > signal_line, hold
-#  If macd is positive and macd < signal line, hold
-#  If macd is negative and macd < signal line, sell
-
-
-# View a shorter period to view the indicator lines
 
 
 """
@@ -201,7 +155,6 @@ def add_stochastic_d(df, symbol, add_helper_data=False):
 
 # When D is above the 80% mark, the stock is in overbought territory, consider selling
 # When D is below the 20% mark, the stock is in oversold territory, consider buying
-
 
 # Strategy
 # Short selling

@@ -13,8 +13,6 @@ import os
 import datetime as dt
 from marketsimcode import compute_portvals
 
-# os.chdir(os.path.join(os.getcwd(), "manual_strategy"))
-
 
 def calculate_statistics(port_val):
     # Get portfolio statistics (note: std_daily_ret = volatility)
@@ -81,13 +79,6 @@ if __name__ == "__main__":
     in_start_date = pd.to_datetime("January 1, 2008")
     in_end_date = pd.to_datetime("December 31 2009")
 
-    # Trim to in sample range with a 30 day prior range for features
-    # max_lookback = 0
-    # start_date = in_start_date - datetime.timedelta(days=max_lookback)
-    # end_date = in_end_date
-    # Benchmark trades
-    # Benchmark: The performance of a portfolio starting with $100,000 cash, investing in 1000 shares of JPM and holding
-    # that position.
     prices = get_data(symbols=["JPM"], dates=pd.date_range(in_start_date, in_end_date), addSPY=False)
     prices = prices.dropna()  # Instead of fill when creating trades
     benchmark_trades = pd.DataFrame(columns=["JPM"], index=prices.index, data=0)

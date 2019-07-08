@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manual_strategy/indicators.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/indicators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manual_strategy/marketsimcode.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/marketsimcode.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+            <state relative-caret-position="-10">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
               <folding>
                 <element signature="e#316#352#0" expanded="true" />
               </folding>
@@ -30,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="118" column="40" lean-forward="true" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
+            <state relative-caret-position="380">
+              <caret line="196" lean-forward="true" selection-start-line="196" selection-end-line="196" />
               <folding>
                 <element signature="e#717#753#0" expanded="true" />
               </folding>
@@ -42,20 +41,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manual_strategy/indicators.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="235" lean-forward="true" selection-start-line="235" selection-end-line="235" />
-              <folding>
-                <element signature="e#1968#2004#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1595">
+              <caret line="262" column="41" lean-forward="true" selection-start-line="262" selection-start-column="41" selection-end-line="262" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/manual_strategy/marketsimcode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+            <state relative-caret-position="305">
+              <caret line="58" column="26" lean-forward="true" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
               <folding>
                 <element signature="e#313#332#0" expanded="true" />
               </folding>
@@ -113,10 +109,10 @@
         <option value="$PROJECT_DIR$/marketsim_folder/grade_marketsim.py" />
         <option value="$PROJECT_DIR$/marketsim_folder/marketsim.py" />
         <option value="$PROJECT_DIR$/manual_strategy/__init__.py" />
-        <option value="$PROJECT_DIR$/manual_strategy/indicators.py" />
-        <option value="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" />
         <option value="$PROJECT_DIR$/manual_strategy/marketsimcode.py" />
+        <option value="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" />
         <option value="$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py" />
+        <option value="$PROJECT_DIR$/manual_strategy/indicators.py" />
       </list>
     </option>
   </component>
@@ -482,15 +478,15 @@
       <workItem from="1561824957293" duration="102000" />
       <workItem from="1561835007866" duration="14708000" />
       <workItem from="1562053853415" duration="3739000" />
-      <workItem from="1562419933090" duration="68317000" />
+      <workItem from="1562419933090" duration="71341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285052000" />
+    <option name="totallyTimeSpent" value="288076000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="925" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.29662424" />
@@ -507,18 +503,18 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.43341708" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.24748744" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4038877" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.30237582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.4643055" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.481461" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.41228557" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.29662424" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24958494" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
@@ -531,12 +527,12 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.33417085" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.23139654" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4389313" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.24748744" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.8263337" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.4643055" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
     </layout-to-restore>
@@ -823,42 +819,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
+    <entry file="file://$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="118" column="40" lean-forward="true" selection-start-line="118" selection-start-column="40" selection-end-line="118" selection-end-column="40" />
+        <state relative-caret-position="-10">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
           <folding>
-            <element signature="e#717#753#0" expanded="true" />
+            <element signature="e#316#352#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manual_strategy/indicators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="235" lean-forward="true" selection-start-line="235" selection-end-line="235" />
+        <state relative-caret-position="1595">
+          <caret line="262" column="41" lean-forward="true" selection-start-line="262" selection-start-column="41" selection-end-line="262" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="196" lean-forward="true" selection-start-line="196" selection-end-line="196" />
           <folding>
-            <element signature="e#1968#2004#0" expanded="true" />
+            <element signature="e#717#753#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manual_strategy/marketsimcode.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+        <state relative-caret-position="305">
+          <caret line="58" column="26" lean-forward="true" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
             <element signature="e#313#332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
-          <folding>
-            <element signature="e#316#352#0" expanded="true" />
           </folding>
         </state>
       </provider>
