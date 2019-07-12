@@ -28,6 +28,7 @@ GT ID: 90347082
 
 import numpy as np
 import random as rand
+from collections import defaultdict
 
 
 class QLearner(object):
@@ -47,7 +48,7 @@ class QLearner(object):
         self.s = 0
         self.a = 0
         self._Q = np.zeros(shape=(num_states, num_actions))
-        self._experience = list()
+        self._experience = defaultdict(list)
         self._alpha = alpha
         self._gamma = gamma
         self._rar = rar
@@ -105,10 +106,6 @@ class QLearner(object):
         r float, a real valued immediate reward.
         """
 
-        # Add experience tuple to agent
-        new_experience = (self.s, self.a, s_prime, r)
-        self._experience.append(new_experience)
-
         # Update Q table
         if self.s is not None and self.a is not None:
             self._Q[self.s, self.a] = self.get_q(self.s, self.a, s_prime, r)
@@ -117,6 +114,9 @@ class QLearner(object):
         action = np.argmax(self._Q[s_prime, :])
 
         if self._dyna > 0:
+            # Add experience tuple to agent
+            new_experience = (self.s, self.a, s_prime, r)
+            self._experience[self.s].append(new_experience)
             self.dyna(self._dyna)
 
         # Update state and action
@@ -148,9 +148,15 @@ class QLearner(object):
         return q_prime
 
     def dyna(self, n):
+        # Avoid oversampling the well-traveled path
+        states_sampled = np.fromiter(self._experience.keys(), np.int32)
         # Use update_q
         for _ in range(n):
+            # Choose state with even weighting
+            s_choice = np.random.choice(states_sampled)
             # Randomly select from previous experience
-            s, a, s_prime, r = rand.choice(self._experience)
+            s, a, s_prime, r = rand.choice(self._experience[s_choice])
             self._Q[s, a] = self.get_q(s, a, s_prime, r)
+
         return
+
