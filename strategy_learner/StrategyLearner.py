@@ -44,7 +44,7 @@ import numpy as np
 class StrategyLearner(object):
 
     # constructor 			  		 			 	 	 		 		 	  		   	  			  	
-    def __init__(self, verbose=False, impact=0.0):
+    def __init__(self, verbose=False, impact=0.0, dyna=200, epochs=3):
         self.verbose = verbose
         self.impact = impact
         self._z_params = dict()
@@ -52,7 +52,8 @@ class StrategyLearner(object):
         self._learner = None
         self._state_order = []
         self._actions = [-1, 0, 1]  # long 1, cash 0, short -1
-        self._dyna = 200
+        self._dyna = dyna
+        self._epochs = epochs
 
     # this method should create a QLearner, and train it for trading 			  		 			 	 	 		 		 	  		   	  			  	
     def addEvidence(self, symbol="IBM",
@@ -81,9 +82,7 @@ class StrategyLearner(object):
         self._learner = QLearner(num_states=len(self._state_dict), num_actions=len(self._actions), dyna=self._dyna)
 
         # Fit learner
-        epochs = 3
-
-        for _ in range(epochs):
+        for _ in range(self._epochs):
             self.fit_learner(state_df)
         return
 
@@ -124,10 +123,7 @@ class StrategyLearner(object):
         state_num = self._state_dict[tuple(state)]
         action = self._learner.querysetstate(state_num)
 
-        state_df_i = list(range(1, state_df.shape[0]))
-        np.random.shuffle(state_df_i)
-
-        for i in state_df_i:
+        for i in range(1, state_df.shape[0]):
             # Calculate reward
             position = self._actions[action]
             reward = state_df.iloc[i]["reward"] * position
@@ -210,39 +206,39 @@ class StrategyLearner(object):
         # Calculate target: n-day future return
         state_df["reward"] = df[symbol].iloc[::-1].rolling(window=n_days + 1).apply(lambda x: (x[0] / x[-1]) - 1).iloc[::-1]
 
-        # Drop NA's, without reward
-        state_df = state_df.dropna()
-
         state_values = []
 
         # How many states are there, and how do I map them to a single integer?
         # unique_boll = range(state_df["bollinger_band"].max() + 1)
 
         # Add bollinger band
-        state_df["bollinger_band"] = self.digitize_bollinger(df["bollinger_band"])
-        unique_boll = [0, 1, 2, 3, 4, 5]
+        state_df["bollinger_band"], unique_n = self.digitize_bollinger(df["bollinger_band"])
+        unique_boll = list(range(unique_n))
         state_values.append(unique_boll)
         self._state_order.append("bollinger_band")
 
         # Add divergence
-        state_df["divergence"] = self.digitize_divergence(df["divergence"])
-        unique_div = [0, 1, 2, 3]
+        state_df["divergence"], unique_n = self.digitize_divergence(df["divergence"])
+        unique_div = list(range(unique_n))
         state_values.append(unique_div)
         self._state_order.append("divergence")
 
         # Add momentum
-        state_df["momentum"] = self.digitize_momentum(df["momentum"])
-        unique_mom = [0, 1, 2, 3]
+        state_df["momentum"], unique_n = self.digitize_momentum(df["momentum"])
+        unique_mom = list(range(unique_n))
         state_values.append(unique_mom)
         self._state_order.append("momentum")
 
         # Add D
-        state_df["D"] = self.digitize_d(df["D"])
-        unique_d = [0, 1, 2, 3]
+        state_df["D"], unique_n = self.digitize_d(df["D"])
+        unique_d = list(range(unique_n))
         state_values.append(unique_d)
         self._state_order.append("D")
 
         state_values.append(self._actions)
+
+        # Drop NA's, without reward
+        state_df = state_df.dropna()
 
         # state_values = [unique_boll, unique_div, unique_mom, unique_d, self._actions]
         # self._state_order = ["bollinger_band", "divergence", "momentum", "D"]
@@ -259,39 +255,38 @@ class StrategyLearner(object):
         # Create state DF
         state_df = pd.DataFrame(index=df.index)
 
-        state_df["bollinger_band"] = self.digitize_bollinger(df["bollinger_band"])
-        state_df["divergence"] = self.digitize_divergence(df["divergence"])
-        state_df["momentum"] = self.digitize_momentum(df["momentum"])
-        state_df["D"] = self.digitize_d(df["D"])
+        state_df["bollinger_band"], _ = self.digitize_bollinger(df["bollinger_band"])
+        state_df["divergence"], _ = self.digitize_divergence(df["divergence"])
+        state_df["momentum"], _ = self.digitize_momentum(df["momentum"])
+        state_df["D"], _ = self.digitize_d(df["D"])
 
         return state_df
 
     @staticmethod
     def digitize_bollinger(indicator):
 
-        bins = [-1.02, -1, 0, 1, 1.02]
+        bins = [-1.03, 0, 1.03]
 
-        return np.digitize(indicator, bins)
+        return np.digitize(indicator, bins), len(bins) + 1
 
     @staticmethod
     def digitize_divergence(indicator):
 
-        bins = [-1, 0, 1]
+        bins = [-.2, 0, .2]
 
-        return np.digitize(indicator, bins)
+        return np.digitize(indicator, bins), len(bins) + 1
 
     @staticmethod
     def digitize_momentum(indicator):
 
-        bins = [-.05, 0, .05]
+        bins = [-.25, .25]
 
-        return np.digitize(indicator, bins)
+        return np.digitize(indicator, bins), len(bins) + 1
 
     @staticmethod
     def digitize_d(indicator):
-        bins = [.1, .3, .6]
-        return np.digitize(indicator, bins)
-
+        bins = [.2, .8]
+        return np.digitize(indicator, bins), len(bins) + 1
 
     def author(self):
         return 'cfarr31'
