@@ -30,7 +30,11 @@ import datetime as dt
 import pandas as pd
 import util as ut
 import random
-from .QLearner import QLearner
+from QLearner import QLearner
+from datetime import timedelta
+from indicators import add_all_indicators
+import itertools
+import numpy as np
 
 
 # import os
@@ -43,229 +47,264 @@ class StrategyLearner(object):
     def __init__(self, verbose=False, impact=0.0):
         self.verbose = verbose
         self.impact = impact
+        self._z_params = dict()
+        self._state_dict = dict()
+        self._learner = None
+        self._state_order = []
+        self._actions = [-1, 0, 1]  # long 1, cash 0, short -1
+        self._dyna = 200
 
     # this method should create a QLearner, and train it for trading 			  		 			 	 	 		 		 	  		   	  			  	
-    def addEvidence(self, symbol="IBM", \
-                    sd=dt.datetime(2008, 1, 1), \
-                    ed=dt.datetime(2009, 1, 1), \
-                    sv=10000):
+    def addEvidence(self, symbol="IBM",
+                    sd=dt.datetime(2008, 1, 1),
+                    ed=dt.datetime(2009, 1, 1),
+                    sv=10000, n=1):
         # add your code to do learning here
+
         # Get price info
         syms = [symbol]
+        adj_sd = sd - timedelta(days=30)
         dates = pd.date_range(adj_sd, ed)
         prices_all = ut.get_data(syms, dates)  # automatically adds SPY
         prices = prices_all[syms]  # only portfolio symbols
-        prices_SPY = prices_all['SPY']  # only SPY, for comparison later
+
         # Calculate indicators
         df = add_all_indicators(prices, syms[0], add_helper_data=False)
+
         # Filter to time range
         df = df.loc[sd:ed, :].copy()
 
-        pass
-        # # example usage of the old backward compatible util function
-        # syms = [symbol]
-        # dates = pd.date_range(sd, ed)
-        # prices_all = ut.get_data(syms, dates)  # automatically adds SPY
-        # prices = prices_all[syms]  # only portfolio symbols
-        # prices_SPY = prices_all['SPY']  # only SPY, for comparison later
-        # if self.verbose: print prices
-        #
-        # # example use with new colname
-        # volume_all = ut.get_data(syms, dates,
-        #                          colname="Volume")  # automatically adds SPY
-        # volume = volume_all[syms]  # only portfolio symbols
-        # volume_SPY = volume_all['SPY']  # only SPY, for comparison later
-        # if self.verbose: print volume
+        # Get state df
+        state_df = self.fit_transform_state(df, symbol, n_days=n)
 
-    # this method should use the existing policy and test it against new data 			  		 			 	 	 		 		 	  		   	  			  	
-    def testPolicy(self, symbol="IBM", \
-                   sd=dt.datetime(2009, 1, 1), \
-                   ed=dt.datetime(2010, 1, 1), \
+        # Initialize Q-learner
+        self._learner = QLearner(num_states=len(self._state_dict), num_actions=len(self._actions), dyna=self._dyna)
+
+        # Fit learner
+        epochs = 3
+
+        for _ in range(epochs):
+            self.fit_learner(state_df)
+        return
+
+    # this method should use the existing policy and test it against new data
+    def testPolicy(self, symbol="IBM",
+                   sd=dt.datetime(2009, 1, 1),
+                   ed=dt.datetime(2010, 1, 1),
                    sv=10000):
 
-        # here we build a fake set of trades 			  		 			 	 	 		 		 	  		   	  			  	
-        # your code should return the same sort of data 			  		 			 	 	 		 		 	  		   	  			  	
-        dates = pd.date_range(sd, ed)
-        prices_all = ut.get_data([symbol], dates)  # automatically adds SPY 			  		 			 	 	 		 		 	  		   	  			  	
-        trades = prices_all[[symbol, ]]  # only portfolio symbols
-        trades_SPY = prices_all['SPY']  # only SPY, for comparison later 			  		 			 	 	 		 		 	  		   	  			  	
-        trades.values[:, :] = 0  # set them all to nothing
-        trades.values[0, :] = 1000  # add a BUY at the start
-        trades.values[40, :] = -1000  # add a SELL
-        trades.values[41, :] = 1000  # add a BUY
-        trades.values[60, :] = -2000  # go short from long
-        trades.values[61, :] = 2000  # go long from short
-        trades.values[-1, :] = -1000  # exit on the last day
-        if self.verbose: print type(trades)  # it better be a DataFrame!
-        if self.verbose: print trades
-        if self.verbose: print prices_all
-        return trades
+        # Get price info
+        syms = [symbol]
+        adj_sd = sd - timedelta(days=30)
+        dates = pd.date_range(adj_sd, ed)
+        prices_all = ut.get_data(syms, dates)  # automatically adds SPY
+        prices = prices_all[syms]  # only portfolio symbols
+
+        # Calculate indicators
+        df = add_all_indicators(prices, syms[0], add_helper_data=False)
+
+        # Filter to time range
+        df = df.loc[sd:ed, :].copy()
+
+        # Get state df
+        state_df = self.transform_state(df)
+
+        trades_df = self.test_learner(state_df, symbol)
+
+        return trades_df
+
+    def fit_learner(self, state_df):
+        # Single iteration through training data
+        # Mix the order up so dyna doesn't overfit to early experiences
+        # return nothing
+        i = 0
+        state = list(state_df.iloc[i].loc[self._state_order])
+        position = self._actions[1]  # Action cash is position 0 at index 1
+        state.append(position)
+        state_num = self._state_dict[tuple(state)]
+        action = self._learner.querysetstate(state_num)
+
+        state_df_i = list(range(1, state_df.shape[0]))
+        np.random.shuffle(state_df_i)
+
+        for i in state_df_i:
+            # Calculate reward
+            position = self._actions[action]
+            reward = state_df.iloc[i]["reward"] * position
+
+            # Update state
+            state = list(state_df.loc[:, self._state_order].iloc[i])
+            state.append(position)
+            state_num = self._state_dict[tuple(state)]
+            # Query with new state and reward for last action
+            action = self._learner.query(state_num, reward)
+
+        return
+
+    def test_learner(self, state_df, symbol):
+
+        # Test Q-Learner in sample for cumulative return (create trades df)
+        actions_list = []
+
+        i = 0
+        state = list(state_df.iloc[i].loc[self._state_order])
+        position = self._actions[1]  # Action cash is position 0 at index 1
+        state.append(position)
+        state_num = self._state_dict[tuple(state)]
+        action = self._learner.querysetstate(state_num)
+        actions_list.append(self._actions[action])
+
+        for i in range(state_df.shape[0]):
+            position = self._actions[action]
+            # Update state
+            state = list(state_df.loc[:, self._state_order].iloc[i])
+            state.append(position)
+            state_num = self._state_dict[tuple(state)]
+            action = self._learner.querysetstate(state_num)
+            actions_list.append(self._actions[action])
+
+        trades_df = pd.DataFrame(index=state_df.index, data=actions_list[:-1], columns=["action"])
+
+        trades_df[symbol] = 0
+
+        current_position = 0
+
+        for i in trades_df.index:
+
+            action = trades_df.loc[i, "action"]
+            if action == current_position:
+                trades_df.loc[i, symbol] = 0
+            elif action == -1 and current_position == 1:
+                trades_df.loc[i, symbol] = -2000
+            elif action == 1 and current_position == -1:
+                trades_df.loc[i, symbol] = 2000
+            elif action == -1 and current_position == 0:
+                trades_df.loc[i, symbol] = -1000
+            elif action == 1 and current_position == 0:
+                trades_df.loc[i, symbol] = 1000
+            elif action == 0 and current_position == 1:
+                trades_df.loc[i, symbol] = -1000
+            elif action == 0 and current_position == -1:
+                trades_df.loc[i, symbol] = 1000
+            else:
+                raise ValueError("Impossible")
+
+            current_position = action
+
+        return trades_df.drop("action", axis=1)
+
+    def fit_transform_state(self, df, symbol, n_days):
+        # Symbol specifies the price column name
+        # Accepts df with price and indicators
+        # Digitize indicators
+        # Store z parameters for later use
+        # Calculate reward
+        # Create state dict for mapping digitized state to integer
+        # Return state_df
+
+        # Create state DF
+        state_df = pd.DataFrame(index=df.index)
+
+        # Add and digitize indicators
+
+        # Calculate target: n-day future return
+        state_df["reward"] = df[symbol].iloc[::-1].rolling(window=n_days + 1).apply(lambda x: (x[0] / x[-1]) - 1).iloc[::-1]
+
+        # Drop NA's, without reward
+        state_df = state_df.dropna()
+
+        state_values = []
+
+        # How many states are there, and how do I map them to a single integer?
+        # unique_boll = range(state_df["bollinger_band"].max() + 1)
+
+        # Add bollinger band
+        state_df["bollinger_band"] = self.digitize_bollinger(df["bollinger_band"])
+        unique_boll = [0, 1, 2, 3, 4, 5]
+        state_values.append(unique_boll)
+        self._state_order.append("bollinger_band")
+
+        # Add divergence
+        state_df["divergence"] = self.digitize_divergence(df["divergence"])
+        unique_div = [0, 1, 2, 3]
+        state_values.append(unique_div)
+        self._state_order.append("divergence")
+
+        # Add momentum
+        state_df["momentum"] = self.digitize_momentum(df["momentum"])
+        unique_mom = [0, 1, 2, 3]
+        state_values.append(unique_mom)
+        self._state_order.append("momentum")
+
+        # Add D
+        state_df["D"] = self.digitize_d(df["D"])
+        unique_d = [0, 1, 2, 3]
+        state_values.append(unique_d)
+        self._state_order.append("D")
+
+        state_values.append(self._actions)
+
+        # state_values = [unique_boll, unique_div, unique_mom, unique_d, self._actions]
+        # self._state_order = ["bollinger_band", "divergence", "momentum", "D"]
+
+        all_states = list(itertools.product(*state_values))
+        self._state_dict = {k: v for v, k in enumerate(all_states)}
+        return state_df
+
+    def transform_state(self, df):
+        # Accepts df with indicators
+        # Digitize indicators using existing params
+        # Return state_df
+
+        # Create state DF
+        state_df = pd.DataFrame(index=df.index)
+
+        state_df["bollinger_band"] = self.digitize_bollinger(df["bollinger_band"])
+        state_df["divergence"] = self.digitize_divergence(df["divergence"])
+        state_df["momentum"] = self.digitize_momentum(df["momentum"])
+        state_df["D"] = self.digitize_d(df["D"])
+
+        return state_df
+
+    @staticmethod
+    def digitize_bollinger(indicator):
+
+        bins = [-1.02, -1, 0, 1, 1.02]
+
+        return np.digitize(indicator, bins)
+
+    @staticmethod
+    def digitize_divergence(indicator):
+
+        bins = [-1, 0, 1]
+
+        return np.digitize(indicator, bins)
+
+    @staticmethod
+    def digitize_momentum(indicator):
+
+        bins = [-.05, 0, .05]
+
+        return np.digitize(indicator, bins)
+
+    @staticmethod
+    def digitize_d(indicator):
+        bins = [.1, .3, .6]
+        return np.digitize(indicator, bins)
 
 
-# Create simulation for development
-from datetime import timedelta
-from .indicators import *
-import itertools
+    def author(self):
+        return 'cfarr31'
 
 
-symbol = "IBM"
-sd = dt.datetime(2008, 1, 1)
-adj_sd = sd - timedelta(days=30)
-ed = dt.datetime(2009, 1, 1)
-sv = 10000
-
-# Get price info
-syms = [symbol]
-dates = pd.date_range(adj_sd, ed)
-prices_all = ut.get_data(syms, dates)  # automatically adds SPY
-prices = prices_all[syms]  # only portfolio symbols
-prices_SPY = prices_all['SPY']  # only SPY, for comparison later
-# Calculate indicators
-df = add_all_indicators(prices, syms[0], add_helper_data=False)
-# Filter to time range
-df = df.loc[sd:ed, :].copy()
-
-# Create new df
-state_df = pd.DataFrame(index=df.index)
-# Discretize indicators
-# TODO There needs to be some lag versions added to describe the direction
-# Find ranges, divide into.... 3?
-# Ranges should split right at 0 if there is a crossover
-# pos_range = df["bollinger_band"].max() + .01
-# neg_range = df["bollinger_band"].min()
-# bins = np.array([neg_range / 2, 0, pos_range / 2])
-# state_df["bollinger_band"] = np.digitize(df["bollinger_band"], bins)
+# from marketsimcode import compute_portvals
 #
+# port_vals = compute_portvals("IBM", trades_df)
 #
-# pos_range = df["divergence"].max() + .01
-# neg_range = df["divergence"].min()
-# bins = np.array([neg_range / 2, 0, pos_range / 2])
-# state_df["divergence"] = np.digitize(df["divergence"], bins)
+# # Calculate statistics
+# cum_return = port_vals.iloc[-1] / port_vals.iloc[0] - 1
 
-range_max = df["D"].max() + .01
-range_min = df["D"].min()
-bins = np.arange(range_min, range_max, 1. / 3.)
-state_df["D"] = np.digitize(df["D"], bins)
-
-
-# Convert each to z-score prior to digitizing
-def z_digitize(indicator, mu=None, std=None):
-    if mu is None:
-        mu = indicator.mean()
-    if std is None:
-        std = indicator.std()
-    z = (indicator - mu) / std
-    bins = np.array([-1, -.1, 0, .1, 1])
-    return np.digitize(z, bins), mu, std
-
-
-state_df["bollinger_band"], boll_mu, boll_std = z_digitize(df["bollinger_band"])
-state_df["divergence"], div_mu, div_std = z_digitize(df["divergence"])
-state_df["momentum"], momentum_mu, momentum_std = z_digitize(df["momentum"])
-
-# Calculate target: n-day future return
-n=1
-state_df["reward"] = df[symbol].iloc[::-1].rolling(window=n+1).apply(lambda x: (x[0] / x[-1]) - 1).iloc[::-1]
-
-# Drop NA's, without reward
-state_df = state_df.dropna()
-
-# How many states are there, and how do I map them to a single integer?
-# Bollinger, divergence, and momentum: 6 each
-unique_boll = range(state_df["bollinger_band"].max() + 1)
-unique_div = range(state_df["divergence"].max() + 1)
-unique_mom = range(state_df["momentum"].max() + 1)
-# D: 4
-unique_d = range(1, state_df["D"].max() + 1)
-unique_actions = [-1, 0, 1]  # long 1, cash 0, short -1
-
-
-state_values = [unique_boll, unique_div, unique_mom, unique_d, unique_actions]
-state_order = ["bollinger_band", "divergence", "momentum", "D"]
-all_states = list(itertools.product(*state_values))
-state_dict = {k: v for v, k in enumerate(all_states)}
-
-# Initialize Q-learner
-q_learner = QLearner(num_states=len(state_dict), num_actions=3, dyna=200)
-# Loop through data and train Q-learner
-
-i = 0
-state = list(state_df.iloc[i].loc[state_order])
-position = unique_actions[1]  # Action cash is position 0 at index 1
-state.append(position)
-state_num = state_dict[tuple(state)]
-action = q_learner.querysetstate(state_num)
-
-for i in range(1, state_df.shape[0]):
-
-    # Calculate reward
-    position = unique_actions[action]
-    reward = state_df.iloc[i]["reward"] * position
-
-    # Update state
-    state = list(state_df.loc[:, state_order].iloc[i])
-    state.append(position)
-    state_num = state_dict[tuple(state)]
-    # Query with new state and reward for last action
-    action = q_learner.query(state_num, reward)
-
-
-# Test Q-Learner in sample for cumulative return (create trades df)
-actions_list = []
-
-i = 0
-state = list(state_df.iloc[i].loc[state_order])
-position = unique_actions[1]  # Action cash is position 0 at index 1
-state.append(position)
-state_num = state_dict[tuple(state)]
-action = q_learner.querysetstate(state_num)
-actions_list.append(unique_actions[action])
-for i in range(state_df.shape[0]):
-    position = unique_actions[action]
-    # Update state
-    state = list(state_df.loc[:, state_order].iloc[i])
-    state.append(position)
-    state_num = state_dict[tuple(state)]
-    action = q_learner.querysetstate(state_num)
-    actions_list.append(unique_actions[action])
-
-trades_df = pd.DataFrame(index=state_df.index, data=actions_list[:-1], columns=["action"])
-
-trades_df[symbol] = 0
-
-current_position = 0
-
-for i in trades_df.index:
-
-    action = trades_df.loc[i, "action"]
-    if action == current_position:
-        trades_df.loc[i, symbol] = 0
-    elif action == -1 and current_position == 1:
-        trades_df.loc[i, symbol] = -2000
-        current_position = -1
-    elif action == 1 and current_position == -1:
-        trades_df.loc[i, symbol] = 2000
-        current_position = 1
-    elif action == -1 and current_position == 0:
-        trades_df.loc[i, symbol] = -1000
-        current_position = -1
-    elif action == 1 and current_position == 0:
-        trades_df.loc[i, symbol] = 1000
-        current_position = 1
-    elif action == 0 and current_position == 1:
-        trades_df.loc[i, symbol] = -1000
-    elif action == 0 and current_position == -1:
-        trades_df.loc[i, symbol] = 1000
-    else:
-        raise ValueError("Impossible")
-    current_position = action
-
-
-# Calculate return
-
-from marketsimcode import compute_portvals
-
-port_vals = compute_portvals("IBM", trades_df)
-
-# Calculate statistics
-cum_return = port_vals.iloc[-1] / port_vals.iloc[0] - 1
+# df["momentum"].mean()
+# df["momentum"].describe()
+#
+# df["momentum"].mean()
