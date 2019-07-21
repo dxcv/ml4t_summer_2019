@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/qlearning_robot/QLearner.py" beforeDir="false" afterPath="$PROJECT_DIR$/qlearning_robot/QLearner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,12 +11,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qlearning_robot/testqlearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="192" column="19" lean-forward="true" selection-start-line="192" selection-start-column="19" selection-end-line="193" selection-end-column="21" />
+            <state relative-caret-position="714">
+              <caret line="192" column="19" selection-start-line="192" selection-start-column="19" selection-end-line="193" selection-end-column="21" />
               <folding>
                 <element signature="e#2252#2310#0" expanded="true" />
               </folding>
@@ -24,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qlearning_robot/QLearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="156" column="54" lean-forward="true" selection-start-line="156" selection-start-column="54" selection-end-line="156" selection-end-column="54" />
+            <state relative-caret-position="1305">
+              <caret line="89" column="86" selection-start-line="89" selection-start-column="86" selection-end-line="89" selection-end-column="86" />
               <folding>
                 <element signature="e#1874#1892#0" expanded="true" />
               </folding>
@@ -37,10 +37,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/defeat_learners/DTLearner.py">
+        <entry file="file://$PROJECT_DIR$/strategy_learner/marketsimcode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="88" selection-start-line="9" selection-start-column="88" selection-end-line="9" selection-end-column="88" />
+            <state relative-caret-position="120">
+              <caret line="8" column="18" lean-forward="true" selection-end-line="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/strategy_learner/indicators.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2430">
+              <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/strategy_learner/QLearner.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-31">
+              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+              <folding>
+                <element signature="e#1874#1892#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/strategy_learner/StrategyLearner.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="135" column="42" lean-forward="true" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+              <folding>
+                <element signature="e#1881#1902#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,6 +135,9 @@
         <option value="$PROJECT_DIR$/qlearning_robot/grade_robot_qlearning.py" />
         <option value="$PROJECT_DIR$/qlearning_robot/testqlearner.py" />
         <option value="$PROJECT_DIR$/qlearning_robot/QLearner.py" />
+        <option value="$PROJECT_DIR$/strategy_learner/indicators.py" />
+        <option value="$PROJECT_DIR$/strategy_learner/marketsimcode.py" />
+        <option value="$PROJECT_DIR$/strategy_learner/StrategyLearner.py" />
       </list>
     </option>
   </component>
@@ -130,7 +166,12 @@
             <path>
               <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
               <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
-              <item name="qlearning_robot" type="462c0819:PsiDirectoryNode" />
+              <item name="manual_strategy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
+              <item name="strategy_learner" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -141,10 +182,13 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/qlearning_robot/grade_robot_qlearning.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/strategy_learner" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -154,6 +198,7 @@
       <recent name="$PROJECT_DIR$/marketsim" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/strategy_learner" />
       <recent name="$PROJECT_DIR$/manual_strategy" />
     </key>
   </component>
@@ -169,7 +214,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_qlearner">
+  <component name="RunManager" selected="Python.test_strategy_learner">
     <configuration name="Marketism" type="PythonConfigurationType" factoryName="Python">
       <module name="ml4t" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -456,6 +501,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_strategy_learner" type="PythonConfigurationType" factoryName="Python">
+      <module name="ml4t" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/ml4t/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/strategy_learner" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/strategy_learner/grade_strategy_learner.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.martingale" />
       <item itemvalue="Python.optimize_something" />
@@ -468,6 +535,7 @@
       <item itemvalue="Python.marketsim" />
       <item itemvalue="Python.run_qlearner" />
       <item itemvalue="Python.test_qlearner" />
+      <item itemvalue="Python.test_strategy_learner" />
       <item itemvalue="Python.analysis" />
       <item itemvalue="Python.grade_marketsim" />
     </list>
@@ -516,23 +584,26 @@
       <workItem from="1562419933090" duration="73523000" />
       <workItem from="1562639195533" duration="1576000" />
       <workItem from="1562806584582" duration="2962000" />
-      <workItem from="1562876140366" duration="19704000" />
+      <workItem from="1562876140366" duration="20458000" />
+      <workItem from="1562942404954" duration="4001000" />
+      <workItem from="1563405279586" duration="1890000" />
+      <workItem from="1563577512792" duration="17710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="314500000" />
+    <option name="totallyTimeSpent" value="338855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="925" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.3032651" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1444383" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24958494" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42713568" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.15226781" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.49784017" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -542,7 +613,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.24298055" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.31641468" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.33040202" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -591,38 +662,10 @@
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$Marketism.coverage" NAME="Marketism Coverage Results" MODIFIED="1561331704896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/marketsim" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$optimize_something.coverage" NAME="optimize_something Coverage Results" MODIFIED="1559494681066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/optimize_something" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$defeat_learners.coverage" NAME="defeat_learners Coverage Results" MODIFIED="1560695191105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/defeat_learners" />
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$test_strategy_learner.coverage" NAME="test_strategy_learner Coverage Results" MODIFIED="1562944864218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/strategy_learner" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$marketsim.coverage" NAME="grade_marketsim Coverage Results" MODIFIED="1561333703930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/marketsim" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assess_learners/dtlearner_vs_rtlearner_Root Mean Squared Error.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assess_learners/dtlearner_vs_rtlearner_Mean Absolute Error.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assess_learners/dtlearner_vs_rtlearner_Explained Variance.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assess_learners/testlearner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="158" column="12" lean-forward="true" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="12" />
-          <folding>
-            <element signature="e#1753#1771#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assess_learners/grade_learners.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="411" column="54" selection-start-line="411" selection-start-column="54" selection-end-line="411" selection-end-column="54" />
-          <folding>
-            <element signature="e#2177#2190#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assess_learners/RTLearner.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1455">
@@ -796,32 +839,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manual_strategy/indicators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3855">
-          <caret line="262" column="41" selection-start-line="262" selection-start-column="41" selection-end-line="262" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qlearning_robot/testworlds/world09.csv">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manual_strategy/marketsimcode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
-          <folding>
-            <element signature="e#313#332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qlearning_robot/grade_robot_qlearning.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -876,22 +895,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qlearning_robot/testqlearner.py">
+    <entry file="file://$PROJECT_DIR$/strategy_learner/grade_strategy_learner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="192" column="19" lean-forward="true" selection-start-line="192" selection-start-column="19" selection-end-line="193" selection-end-column="21" />
+        <state relative-caret-position="15">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
-            <element signature="e#2252#2310#0" expanded="true" />
+            <element signature="e#2560#2613#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qlearning_robot/QLearner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="156" column="54" lean-forward="true" selection-start-line="156" selection-start-column="54" selection-end-line="156" selection-end-column="54" />
+        <state relative-caret-position="1305">
+          <caret line="89" column="86" selection-start-line="89" selection-start-column="86" selection-end-line="89" selection-end-column="86" />
           <folding>
             <element signature="e#1874#1892#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/QLearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+          <folding>
+            <element signature="e#1874#1892#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
+          <folding>
+            <element signature="e#310#346#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manual_strategy/marketsimcode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="7" selection-start-line="7" selection-end-line="62" />
+          <folding>
+            <element signature="e#313#332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/marketsimcode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="18" lean-forward="true" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/indicators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2430">
+          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manual_strategy/indicators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="262" column="41" selection-start-line="262" selection-start-column="41" selection-end-line="262" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qlearning_robot/testqlearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="192" column="19" selection-start-line="192" selection-start-column="19" selection-end-line="193" selection-end-column="21" />
+          <folding>
+            <element signature="e#2252#2310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/StrategyLearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="135" column="42" lean-forward="true" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+          <folding>
+            <element signature="e#1881#1902#0" expanded="true" />
           </folding>
         </state>
       </provider>
