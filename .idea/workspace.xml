@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c9d8a764-2b7f-4eef-bbfd-9c2bed123818" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategy_learner/.cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/strategy_learner/.cache/v/cache/lastfailed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manual_strategy/manual_in_sample.png" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/manual_in_sample.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manual_strategy/manual_out_of_sample.png" beforeDir="false" afterPath="$PROJECT_DIR$/manual_strategy/manual_out_of_sample.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/strategy_learner/StrategyLearner.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategy_learner/StrategyLearner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategy_learner/comments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/strategy_learner/comments.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategy_learner/points.txt" beforeDir="false" afterPath="$PROJECT_DIR$/strategy_learner/points.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategy_learner/optimal_plot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategy_learner/test_strategy_learner.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategy_learner/test_strategy_learner.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,60 +31,15 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/strategy_learner/StrategyLearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="281" column="22" selection-start-line="281" selection-start-column="22" selection-end-line="281" selection-end-column="22" />
+            <state relative-caret-position="274">
+              <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
               <folding>
                 <element signature="e#1881#1902#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/strategy_learner/test_strategy_learner.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="71" column="38" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
-              <folding>
-                <element signature="e#1#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1635">
-              <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
-              <folding>
-                <element signature="e#310#346#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/strategy_learner/marketsimcode.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="e#313#332#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/strategy_learner/indicators.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="35" column="64" selection-start-line="35" selection-start-column="64" selection-end-line="35" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -138,7 +95,6 @@
         <option value="$PROJECT_DIR$/marketsim_folder/marketsim.py" />
         <option value="$PROJECT_DIR$/manual_strategy/__init__.py" />
         <option value="$PROJECT_DIR$/manual_strategy/marketsimcode.py" />
-        <option value="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" />
         <option value="$PROJECT_DIR$/manual_strategy/TheoreticallyOptimalStrategy.py" />
         <option value="$PROJECT_DIR$/manual_strategy/indicators.py" />
         <option value="$PROJECT_DIR$/qlearning_robot/grade_robot_qlearning.py" />
@@ -147,6 +103,7 @@
         <option value="$PROJECT_DIR$/strategy_learner/indicators.py" />
         <option value="$PROJECT_DIR$/strategy_learner/marketsimcode.py" />
         <option value="$PROJECT_DIR$/strategy_learner/old_comments.txt" />
+        <option value="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" />
         <option value="$PROJECT_DIR$/strategy_learner/test_strategy_learner.py" />
         <option value="$PROJECT_DIR$/strategy_learner/StrategyLearner.py" />
       </list>
@@ -176,11 +133,6 @@
             <path>
               <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
               <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
-              <item name="manual_strategy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ML4T_2019Spring" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ML4T_2019Spring" type="462c0819:PsiDirectoryNode" />
               <item name="strategy_learner" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -193,7 +145,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/strategy_learner/test_strategy_learner.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -226,6 +178,28 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.test_strategy_learner">
+    <configuration name="ManualStrategy" type="PythonConfigurationType" factoryName="Python">
+      <module name="ml4t" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/ml4t/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/manual_strategy" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manual_strategy/ManualStrategy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Marketism" type="PythonConfigurationType" factoryName="Python">
       <module name="ml4t" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -570,13 +544,14 @@
       <item itemvalue="Python.test_qlearner" />
       <item itemvalue="Python.grade_strategy_learner" />
       <item itemvalue="Python.test_strategy_learner" />
+      <item itemvalue="Python.ManualStrategy" />
       <item itemvalue="Python.analysis" />
       <item itemvalue="Python.grade_marketsim" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.grade_marketsim" />
         <item itemvalue="Python.analysis" />
+        <item itemvalue="Python.grade_marketsim" />
       </list>
     </recent_temporary>
   </component>
@@ -625,23 +600,23 @@
       <workItem from="1563735288923" duration="334000" />
       <workItem from="1563735650178" duration="101000" />
       <workItem from="1563736253730" duration="132000" />
-      <workItem from="1563736619491" duration="6075000" />
+      <workItem from="1563736619491" duration="19803000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="360578000" />
+    <option name="totallyTimeSpent" value="374306000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1013" height="1895" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.36847195" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23265742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24958494" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4184598" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4465335" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.49784017" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -660,12 +635,12 @@
       <window_info anchor="right" id="Database" order="5" weight="0.32982844" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.36918303" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23265742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24958494" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4184598" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4465335" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.49784017" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -688,9 +663,10 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$ManualStrategy.coverage" NAME="ManualStrategy Coverage Results" MODIFIED="1563747655670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/manual_strategy" />
     <SUITE FILE_PATH="coverage/ml4t$martingale.coverage" NAME="martingale Coverage Results" MODIFIED="1558570311870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/martingale" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$run_qlearner.coverage" NAME="run_qlearner Coverage Results" MODIFIED="1562906427154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/qlearning_robot" />
-    <SUITE FILE_PATH="coverage/ML4T_2019Spring$grade_strategy_learner.coverage" NAME="grade_strategy_learner Coverage Results" MODIFIED="1563742883794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/strategy_learner" />
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$grade_strategy_learner.coverage" NAME="grade_strategy_learner Coverage Results" MODIFIED="1563758926970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/strategy_learner" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$grade_marketsim.coverage" NAME="grade_marketsim Coverage Results" MODIFIED="1561905555237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/marketsim_folder" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$defeat_learners_test.coverage" NAME="defeat_learners_test Coverage Results" MODIFIED="1560695184943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/defeat_learners" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$test_qlearner.coverage" NAME="test_qlearner Coverage Results" MODIFIED="1562906450230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/qlearning_robot" />
@@ -701,27 +677,11 @@
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$Marketism.coverage" NAME="Marketism Coverage Results" MODIFIED="1561331704896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/marketsim" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$optimize_something.coverage" NAME="optimize_something Coverage Results" MODIFIED="1559494681066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/optimize_something" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$defeat_learners.coverage" NAME="defeat_learners Coverage Results" MODIFIED="1560695191105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/defeat_learners" />
-    <SUITE FILE_PATH="coverage/ML4T_2019Spring$test_strategy_learner.coverage" NAME="test_strategy_learner Coverage Results" MODIFIED="1563742934026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/strategy_learner" />
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$test_strategy_learner.coverage" NAME="test_strategy_learner Coverage Results" MODIFIED="1563759129465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/strategy_learner" />
     <SUITE FILE_PATH="coverage/ML4T_2019Spring$marketsim.coverage" NAME="grade_marketsim Coverage Results" MODIFIED="1561333703930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/marketsim" />
+    <SUITE FILE_PATH="coverage/ML4T_2019Spring$analysis.coverage" NAME="analysis Coverage Results" MODIFIED="1563747480744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/martingale" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/defeat_learners/LinRegLearner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/defeat_learners/testbest4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="89" column="29" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marketsim/comments.txt" />
-    <entry file="file://$PROJECT_DIR$/marketsim/marketsim.py" />
-    <entry file="file://$PROJECT_DIR$/marketsim/grade_marketsim.py" />
     <entry file="file://$PROJECT_DIR$/defeat_learners/gen_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -904,16 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manual_strategy/marketsimcode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="7" selection-start-line="7" selection-end-line="62" />
-          <folding>
-            <element signature="e#313#332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manual_strategy/indicators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="581">
@@ -971,16 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strategy_learner/marketsimcode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#313#332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strategy_learner/indicators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -998,32 +938,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/manual_strategy/marketsimcode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#313#332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/optimal_plot.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/strategy_learner_plot.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manual_strategy/manual_in_sample.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/marketsimcode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+          <folding>
+            <element signature="e#313#332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/manual_strategy/ManualStrategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
+        <state relative-caret-position="648">
+          <caret line="180" selection-start-line="180" selection-end-line="180" />
           <folding>
             <element signature="e#310#346#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strategy_learner/StrategyLearner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="281" column="22" selection-start-line="281" selection-start-column="22" selection-end-line="281" selection-end-column="22" />
-          <folding>
-            <element signature="e#1881#1902#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/in_sample_strategy_learner.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/out_sample_strategy_learner.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/strategy_learner/test_strategy_learner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="71" column="38" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+        <state relative-caret-position="60">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy_learner/StrategyLearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="230" column="37" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
           <folding>
-            <element signature="e#1#44#0" expanded="true" />
+            <element signature="e#1881#1902#0" expanded="true" />
           </folding>
         </state>
       </provider>

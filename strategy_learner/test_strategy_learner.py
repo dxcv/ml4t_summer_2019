@@ -1,33 +1,7 @@
-from StrategyLearner import StrategyLearner
-from util import get_data
-
-"""
-For your report, trade only the symbol JPM. This will enable us to more easily compare results. We will test your 
-learner with other symbols as well. You may use data from other symbols (such as SPY) to inform your strategy. 
-
-The in sample/development period is January 1, 2008 to December 31 2009. The out of sample/testing period is January 1, 
-2010 to December 31 2011. 
-Starting cash is $100,000. 
-Allowable positions are: 1000 shares long, 1000 shares short, 
-0 shares. 
-Benchmark: The performance of a portfolio starting with $100,000 cash, investing in 1000 shares of the 
-symbol in use and holding that position. Include transaction costs. 
-There is no limit on leverage. Transaction costs: 
-Commission will always be $0.00, Impact may vary, and will be passed in as a parameter to the learner. 
-
-"""
-
-# symbol = "JPM"
-
 import StrategyLearner as sl
-import datetime as dt
-
 import pandas as pd
 from util import get_data
 from matplotlib import pyplot as plt
-import datetime
-import os
-import datetime as dt
 from marketsimcode import compute_portvals
 
 from random import seed
@@ -52,6 +26,10 @@ def calculate_statistics(port_val):
     return {"cum_ret": cr, "avg_day_ret": adr, "std_day_ret": sddr}
 
 
+def author():
+    return 'cfarr31'
+
+
 if __name__ == "__main__":
     symbol = "JPM"  # AAPL
 
@@ -61,15 +39,23 @@ if __name__ == "__main__":
     out_end_date = pd.to_datetime("December 31, 2011")
 
     # Calculate benchmark
-    prices = get_data(symbols=[symbol], dates=pd.date_range(in_start_date, in_end_date), addSPY=False)
-    prices = prices.dropna()  # Instead of fill when creating trades
-    benchmark_trades = pd.DataFrame(columns=[symbol], index=prices.index, data=0)
-    benchmark_trades.iloc[0] = 1000
+    in_prices = get_data(symbols=[symbol], dates=pd.date_range(in_start_date, in_end_date), addSPY=False)
+    in_prices = in_prices.dropna()  # Instead of fill when creating trades
+    in_benchmark_trades = pd.DataFrame(columns=[symbol], index=in_prices.index, data=0)
+    in_benchmark_trades.iloc[0] = 1000
+
+    out_prices = get_data(symbols=[symbol], dates=pd.date_range(out_start_date, out_end_date), addSPY=False)
+    out_prices = out_prices.dropna()  # Instead of fill when creating trades
+    out_benchmark_trades = pd.DataFrame(columns=[symbol], index=out_prices.index, data=0)
+    out_benchmark_trades.iloc[0] = 1000
 
     # Train learner
-    learner = sl.StrategyLearner(verbose=False, impact=0.000, dyna=200, epochs=3)  # constructor
+    learner = sl.StrategyLearner(verbose=False, impact=0.95, dyna=200, epochs=3)  # constructor
     learner.addEvidence(symbol=symbol, sd=in_start_date, ed=in_end_date,
                         sv=100000, n=1)  # training phase
+
+    print "State count"
+    print len(learner._state_dict)
 
     # In sample policy test
     df_trades_in = learner.testPolicy(symbol=symbol, sd=in_start_date, ed=in_end_date,
@@ -80,112 +66,98 @@ if __name__ == "__main__":
                                        sv=100000)  # testing phase
 
     print "Benchmark Stats"
-    benchmark_portvals = compute_portvals(symbol, benchmark_trades, commission=0, impact=0)
-    benchmark_portvals.columns = ["Benchmark"]
-    print calculate_statistics(benchmark_portvals)
+    in_benchmark_portvals = compute_portvals(symbol, in_benchmark_trades, commission=0, impact=0)
+    in_benchmark_portvals.columns = ["Benchmark"]
+    print calculate_statistics(in_benchmark_portvals)
+
     print "In Sample Stats"
     # Optimal portvals-+-
     in_portvals = compute_portvals(symbol, df_trades_in, commission=0, impact=0)
-    in_portvals.columns = ["In Sample"]
+    in_portvals.columns = ["Strategy Learner"]
     print calculate_statistics(in_portvals)
+
+    print "Out of Sample Benchmark Stats"
+    out_benchmark_portvals = compute_portvals(symbol, out_benchmark_trades, commission=0, impact=0)
+    out_benchmark_portvals.columns = ["Benchmark"]
+    print calculate_statistics(out_benchmark_portvals)
+
     print "Out Sample Stats"
     # Optimal portvals-+-
     out_portvals = compute_portvals(symbol, df_trades_out, commission=0, impact=0)
-    out_portvals.columns = ["Out Sample"]
+    out_portvals.columns = ["Strategy Learner"]
     print calculate_statistics(out_portvals)
 
-    # Print Benchmark
+    # In sample plot
+    plot_df = pd.concat([in_portvals, in_benchmark_portvals], axis=1)
 
-    # Print in sample
+    plot_df = plot_df / plot_df.iloc[0]
+    plot_df.loc[:, ["Strategy Learner", "Benchmark"]].plot(color=["red", "green"], title="Strategy Learner\nIn Sample")
+    plt.ylabel("Normalized Price")
+    for i in df_trades_in.index:
+        if i not in plot_df.index:
+            continue
+        y = plot_df.loc[i, "Benchmark"]
+        if df_trades_in.loc[i, symbol] == -1000:
+            plt.vlines(x=i, ymin=y-.01, ymax=y, color="black")
+        elif df_trades_in.loc[i, symbol] == 1000:
+            plt.vlines(x=i, ymin=y, ymax=y+.01, color="blue")
+    plt.savefig("in_sample_strategy_learner.png")
 
-    # Print out sample
+    # Out of sample plot
+    plot_df = pd.concat([out_portvals, out_benchmark_portvals], axis=1)
 
-    # plot_df = pd.concat([portvals, benchmark_portvals], axis=1)
-    #
-    # plot_df = plot_df / plot_df.iloc[0]
-    # plot_df.loc[:, ["Optimal", "Benchmark"]].plot(color=["red", "green"], title="Theoretically Optimal Strategy")
-    # plt.ylabel("Normalized Price")
-    # plt.savefig("optimal_plot.png")
+    plot_df = plot_df / plot_df.iloc[0]
+    plot_df.loc[:, ["Strategy Learner", "Benchmark"]].plot(color=["red", "green"], title="Strategy Learner\nOut of Sample")
+    plt.ylabel("Normalized Price")
+    for i in df_trades_out.index:
+        if i not in plot_df.index:
+            continue
+        y = plot_df.loc[i, "Benchmark"]
+        if df_trades_out.loc[i, symbol] == -1000:
+            plt.vlines(x=i, ymin=y-.01, ymax=y, color="black")
+        elif df_trades_out.loc[i, symbol] == 1000:
+            plt.vlines(x=i, ymin=y, ymax=y+.01, color="blue")
+    plt.savefig("out_sample_strategy_learner.png")
+
+    # Create out of sample plot for comparison
+
 
 
 """
-Benchmark Stats
+Benchmark
+In Sample
 {'avg_day_ret': Benchmark    0.000004
 dtype: float64, 'cum_ret': Benchmark    0.00123
 dtype: float64, 'std_day_ret': Benchmark    0.001613
 dtype: float64}
-In Sample Stats
-{'avg_day_ret': In Sample    0.00004
-dtype: float64, 'cum_ret': In Sample    0.02024
-dtype: float64, 'std_day_ret': In Sample    0.001079
+out of sample
+{'avg_day_ret': Benchmark   -0.000016
+dtype: float64, 'cum_ret': Benchmark   -0.00834
+dtype: float64, 'std_day_ret': Benchmark    0.000813
 dtype: float64}
-Out Sample Stats
-{'avg_day_ret': Out Sample    0.000032
-dtype: float64, 'cum_ret': Out Sample    0.01635
-dtype: float64, 'std_day_ret': Out Sample    0.000566
-dtype: float64}
-Bollinger only, n=2, pass 3/4 tests
 
-n = 10
-Benchmark Stats
-{'avg_day_ret': Benchmark    0.000004
-dtype: float64, 'cum_ret': Benchmark    0.00123
-dtype: float64, 'std_day_ret': Benchmark    0.001613
+ManualStrategy
+{'avg_day_ret': Manual    0.000099
+dtype: float64, 'cum_ret': Manual    0.05029
+dtype: float64, 'std_day_ret': Manual    0.001572
 dtype: float64}
+Out of Sample
+{'avg_day_ret': Manual   -0.000017
+dtype: float64, 'cum_ret': Manual   -0.00872
+dtype: float64, 'std_day_ret': Manual    0.0008
+dtype: float64}
+
+StrategyLearner
 In Sample Stats
-{'avg_day_ret': In Sample    0.000047
-dtype: float64, 'cum_ret': In Sample    0.02351
-dtype: float64, 'std_day_ret': In Sample    0.001463
+{'avg_day_ret': In Sample    0.000126
+dtype: float64, 'cum_ret': In Sample    0.06524
+dtype: float64, 'std_day_ret': In Sample    0.001008
 dtype: float64}
 Out Sample Stats
 {'avg_day_ret': Out Sample    0.000025
-dtype: float64, 'cum_ret': Out Sample    0.0124
-dtype: float64, 'std_day_ret': Out Sample    0.000727
+dtype: float64, 'cum_ret': Out Sample    0.01239
+dtype: float64, 'std_day_ret': Out Sample    0.000574
 dtype: float64}
-
-Bollinger only, n=10, pass 3/4 tests
-
 """
 
-"""
-Divergence only
 
-n=2
-Benchmark Stats
-{'avg_day_ret': Benchmark    0.000004
-dtype: float64, 'cum_ret': Benchmark    0.00123
-dtype: float64, 'std_day_ret': Benchmark    0.001613
-dtype: float64}
-In Sample Stats
-{'avg_day_ret': In Sample    0.00002
-dtype: float64, 'cum_ret': In Sample    0.0099
-dtype: float64, 'std_day_ret': In Sample    0.0009
-dtype: float64}
-Out Sample Stats
-{'avg_day_ret': Out Sample    0.00002
-dtype: float64, 'cum_ret': Out Sample    0.01009
-dtype: float64, 'std_day_ret': Out Sample    0.000486
-dtype: float64}
-
-Divergence only, n=2 passed 2/4 tests
-
-n=10
-Benchmark Stats
-{'avg_day_ret': Benchmark    0.000004
-dtype: float64, 'cum_ret': Benchmark    0.00123
-dtype: float64, 'std_day_ret': Benchmark    0.001613
-dtype: float64}
-In Sample Stats
-{'avg_day_ret': In Sample    0.000006
-dtype: float64, 'cum_ret': In Sample    0.00247
-dtype: float64, 'std_day_ret': In Sample    0.001243
-dtype: float64}
-Out Sample Stats
-{'avg_day_ret': Out Sample   -0.000008
-dtype: float64, 'cum_ret': Out Sample   -0.00422
-dtype: float64, 'std_day_ret': Out Sample    0.00063
-dtype: float64}
-
-Divergence only, n=10 passed 2/4 tests
-
-"""

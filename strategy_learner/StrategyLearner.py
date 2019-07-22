@@ -124,9 +124,30 @@ class StrategyLearner(object):
         action = self._learner.querysetstate(state_num)
 
         for i in range(1, state_df.shape[0]):
+            orig_position = position
             # Calculate reward
             position = self._actions[action]
             reward = state_df.iloc[i]["reward"] * position
+
+            # Adjust reward for impact
+            # Depending on original position...
+            # If the position changes, reduce reward by impact
+            if orig_position != position:
+                reward = reward - (abs(reward) * self.impact)
+
+            # Calculate reward
+            # Long (1) and price goes down...
+            # return * 1
+            # Long (1) and price goes up...
+            # return * 1
+            # Cash (0) and price goes down...
+            # return * -1
+            # Cash (0) and price goes up...
+            # return * -1
+            # Short (-1) and price goes down...
+            # return * -1
+            # Short (-1) and price goes up...
+            # return * -1
 
             # Update state
             state = list(state_df.loc[:, self._state_order].iloc[i])
@@ -206,6 +227,9 @@ class StrategyLearner(object):
         # Calculate target: n-day future return
         state_df["reward"] = df[symbol].iloc[::-1].rolling(window=n_days + 1).apply(lambda x: (x[0] / x[-1]) - 1).iloc[::-1]
 
+        # Impact adjusted reward
+        state_df["buy_impact_reward"]
+
         state_values = []
 
         # How many states are there, and how do I map them to a single integer?
@@ -240,9 +264,6 @@ class StrategyLearner(object):
         # Drop NA's, without reward
         state_df = state_df.dropna()
 
-        # state_values = [unique_boll, unique_div, unique_mom, unique_d, self._actions]
-        # self._state_order = ["bollinger_band", "divergence", "momentum", "D"]
-
         all_states = list(itertools.product(*state_values))
         self._state_dict = {k: v for v, k in enumerate(all_states)}
         return state_df
@@ -272,14 +293,14 @@ class StrategyLearner(object):
     @staticmethod
     def digitize_divergence(indicator):
 
-        bins = [-.2, 0, .2]
+        bins = [-.25, 0, .25]
 
         return np.digitize(indicator, bins), len(bins) + 1
 
     @staticmethod
     def digitize_momentum(indicator):
 
-        bins = [-.25, .25]
+        bins = [-.27, .27]
 
         return np.digitize(indicator, bins), len(bins) + 1
 
@@ -290,16 +311,3 @@ class StrategyLearner(object):
 
     def author(self):
         return 'cfarr31'
-
-
-# from marketsimcode import compute_portvals
-#
-# port_vals = compute_portvals("IBM", trades_df)
-#
-# # Calculate statistics
-# cum_return = port_vals.iloc[-1] / port_vals.iloc[0] - 1
-
-# df["momentum"].mean()
-# df["momentum"].describe()
-#
-# df["momentum"].mean()

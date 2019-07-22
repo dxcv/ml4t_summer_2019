@@ -133,11 +133,11 @@ if __name__ == "__main__":
     prices = prices.dropna()  # Instead of fill when creating trades
     benchmark_trades = pd.DataFrame(columns=["JPM"], index=prices.index, data=0)
     benchmark_trades.iloc[0] = 1000
-    benchmark_portvals = compute_portvals(benchmark_trades, commission=9.95, impact=0.005)
+    benchmark_portvals = compute_portvals(benchmark_trades, commission=0, impact=0.0)
     benchmark_portvals.columns = ["Benchmark"]
 
     # Optimal portvals
-    portvals = compute_portvals(in_sample_trades, commission=9.95, impact=0.005)
+    portvals = compute_portvals(in_sample_trades, commission=0, impact=0.0)
     portvals.columns = ["Manual"]
 
     plot_df = pd.concat([portvals, benchmark_portvals], axis=1)
@@ -170,11 +170,11 @@ if __name__ == "__main__":
     prices = prices.dropna()  # Instead of fill when creating trades
     benchmark_trades = pd.DataFrame(columns=["JPM"], index=prices.index, data=0)
     benchmark_trades.iloc[0] = 1000
-    benchmark_portvals = compute_portvals(benchmark_trades, commission=9.95, impact=0.005)
+    benchmark_portvals = compute_portvals(benchmark_trades, commission=0, impact=0.0)
     benchmark_portvals.columns = ["Benchmark"]
 
     # Optimal portvals
-    portvals = compute_portvals(out_sample_trades, commission=9.95, impact=0.005)
+    portvals = compute_portvals(out_sample_trades, commission=0, impact=0.0)
     portvals.columns = ["Manual"]
 
     plot_df = pd.concat([portvals, benchmark_portvals], axis=1)
