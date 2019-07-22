@@ -50,7 +50,7 @@ if __name__ == "__main__":
     out_benchmark_trades.iloc[0] = 1000
 
     # Train learner
-    learner = sl.StrategyLearner(verbose=False, impact=0.95, dyna=200, epochs=3)  # constructor
+    learner = sl.StrategyLearner(verbose=False, impact=0.05, dyna=200, epochs=3)  # constructor
     learner.addEvidence(symbol=symbol, sd=in_start_date, ed=in_end_date,
                         sv=100000, n=1)  # training phase
 

@@ -227,9 +227,6 @@ class StrategyLearner(object):
         # Calculate target: n-day future return
         state_df["reward"] = df[symbol].iloc[::-1].rolling(window=n_days + 1).apply(lambda x: (x[0] / x[-1]) - 1).iloc[::-1]
 
-        # Impact adjusted reward
-        state_df["buy_impact_reward"]
-
         state_values = []
 
         # How many states are there, and how do I map them to a single integer?
